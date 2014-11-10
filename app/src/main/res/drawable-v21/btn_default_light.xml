@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--drawable-v21/btn_default_light.xml-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/btn_default_light_pressed" />

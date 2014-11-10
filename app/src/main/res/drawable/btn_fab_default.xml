@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--drawable/btn_fab_default.xml-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item android:bottom="0dp" android:left="2dp" android:right="2dp" android:top="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/fab_color_shadow" />
+                </shape>
+            </item>
+
+            <item android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/style_color_accent" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:bottom="2dp" android:left="2dp" android:right="2dp" android:shape="oval" android:top="2dp">
+            <solid android:color="@color/fab_color_pressed" />
+        </shape>
+    </item>
+</selector>
