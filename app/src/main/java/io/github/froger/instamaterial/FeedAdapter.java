@@ -16,9 +16,11 @@ import hugo.weaving.DebugLog;
  * Created by froger_mcs on 05.11.14.
  */
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int ANIMATED_ITEMS_COUNT = 2;
 
     private Context context;
-    private int itemsCount = 10;
+    private int lastAnimatedPosition = -1;
+    private int itemsCount = 0;
 
     public FeedAdapter(Context context) {
         this.context = context;
@@ -30,8 +32,25 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return new CellFeedViewHolder(view);
     }
 
+    private void runEnterAnimation(View view, int position) {
+        if (position >= ANIMATED_ITEMS_COUNT - 1) {
+            return;
+        }
+
+        if (position > lastAnimatedPosition) {
+            lastAnimatedPosition = position;
+            view.setTranslationY(Utils.getScreenHeight(context));
+            view.animate()
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator(3.f))
+                    .setDuration(700)
+                    .start();
+        }
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        runEnterAnimation(viewHolder.itemView, position);
         CellFeedViewHolder holder = (CellFeedViewHolder) viewHolder;
         if (position % 2 == 0) {
             holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
@@ -57,5 +76,10 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(view);
             ButterKnife.inject(this, view);
         }
+    }
+
+    public void updateItems() {
+        itemsCount = 10;
+        notifyDataSetChanged();
     }
 }
