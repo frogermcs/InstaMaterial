@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="io.github.froger.instamaterial.CommentsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CommentsActivity" />
     </application>
 
 </manifest>
