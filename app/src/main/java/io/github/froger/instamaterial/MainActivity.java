@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFeedItemClickListener {
     private static final int ANIM_DURATION_TOOLBAR = 300;
     private static final int ANIM_DURATION_FAB = 400;
 
@@ -59,7 +58,9 @@ public class MainActivity extends ActionBarActivity {
     private void setupFeed() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvFeed.setLayoutManager(linearLayoutManager);
+
         feedAdapter = new FeedAdapter(this);
+        feedAdapter.setOnFeedItemClickListener(this);
         rvFeed.setAdapter(feedAdapter);
     }
 
@@ -112,5 +113,9 @@ public class MainActivity extends ActionBarActivity {
                 .setDuration(ANIM_DURATION_FAB)
                 .start();
         feedAdapter.updateItems();
+    }
+
+    @Override
+    public void onCommentsClick(View v, int position) {
     }
 }
