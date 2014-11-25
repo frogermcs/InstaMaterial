@@ -2,7 +2,9 @@ package io.github.froger.instamaterial;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.ActivityManager;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -80,6 +82,7 @@ public class CommentsActivity extends ActionBarActivity {
     }
 
     private void startIntroAnimation() {
+        ViewCompat.setElevation(toolbar, 0);
         contentRoot.setScaleY(0.1f);
         contentRoot.setPivotY(drawingStartLocation);
         llAddComment.setTranslationY(100);
@@ -91,6 +94,7 @@ public class CommentsActivity extends ActionBarActivity {
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
+                        ViewCompat.setElevation(toolbar, Utils.dpToPx(8));
                         animateContent();
                     }
                 })
@@ -115,6 +119,7 @@ public class CommentsActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+        ViewCompat.setElevation(toolbar, 0);
         contentRoot.animate()
                 .translationY(Utils.getScreenHeight(this))
                 .setDuration(200)
