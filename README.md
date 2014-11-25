@@ -6,11 +6,11 @@ Source code for implementation of Instagram with Material Design (originally bas
 [INSTAGRAM with Material Design](https://www.youtube.com/watch?v=ojwdmgmdR_Q) concept video
 
 ## Blog posts
-[Getting started](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real)
+[Getting started - opening the app](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real)
 
 Implemented effects:
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/fYhpc1LddHE" frameborder="0" allowfullscreen></iframe>
+[![Opening app animation](http://img.youtube.com/vi/fYhpc1LddHE/0.jpg)](http://www.youtube.com/watch?v=fYhpc1LddHE)
 
 ---
 
@@ -18,4 +18,4 @@ Implemented effects:
 
 Implemented effects:
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/b8OOaluag-w" frameborder="0" allowfullscreen></iframe>
+[![Comments view transition](http://img.youtube.com/vi/b8OOaluag-w/0.jpg)](http://www.youtube.com/watch?v=b8OOaluag-w)
