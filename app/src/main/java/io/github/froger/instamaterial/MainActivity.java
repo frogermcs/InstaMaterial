@@ -2,6 +2,7 @@ package io.github.froger.instamaterial;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -117,5 +118,11 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
 
     @Override
     public void onCommentsClick(View v, int position) {
+        final Intent intent = new Intent(this, CommentsActivity.class);
+        int[] startingLocation = new int[2];
+        v.getLocationOnScreen(startingLocation);
+        intent.putExtra(CommentsActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 }
