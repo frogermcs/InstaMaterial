@@ -48,6 +48,8 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
 
         if (savedInstanceState == null) {
             pendingIntroAnimation = true;
+        } else {
+            feedAdapter.updateItems(false);
         }
     }
 
@@ -113,7 +115,7 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
                 .setStartDelay(300)
                 .setDuration(ANIM_DURATION_FAB)
                 .start();
-        feedAdapter.updateItems();
+        feedAdapter.updateItems(true);
     }
 
     @Override
