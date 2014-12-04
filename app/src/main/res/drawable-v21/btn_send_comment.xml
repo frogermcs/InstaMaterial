@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--drawable-v21/btn_send_comment.xml-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#ffffff">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_send_normal" />
+        </shape>
+    </item>
+</ripple>
