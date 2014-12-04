@@ -71,6 +71,7 @@ public class CommentsActivity extends ActionBarActivity {
 
         commentsAdapter = new CommentsAdapter(this);
         rvComments.setAdapter(commentsAdapter);
+        rvComments.setOverScrollMode(View.OVER_SCROLL_NEVER);
         rvComments.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
