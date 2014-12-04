@@ -59,7 +59,12 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
     }
 
     private void setupFeed() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this) {
+            @Override
+            protected int getExtraLayoutSpace(RecyclerView.State state) {
+                return 300;
+            }
+        };
         rvFeed.setLayoutManager(linearLayoutManager);
 
         feedAdapter = new FeedAdapter(this);
