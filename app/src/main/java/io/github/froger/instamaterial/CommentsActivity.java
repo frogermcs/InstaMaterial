@@ -2,28 +2,31 @@ package io.github.froger.instamaterial;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ActivityManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
+import io.github.froger.instamaterial.view.SendCommentButton;
 
 /**
  * Created by froger_mcs on 11.11.14.
  */
-public class CommentsActivity extends ActionBarActivity {
+public class CommentsActivity extends ActionBarActivity implements SendCommentButton.OnSendClickListener {
     public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
 
     @InjectView(R.id.toolbar)
@@ -34,6 +37,10 @@ public class CommentsActivity extends ActionBarActivity {
     RecyclerView rvComments;
     @InjectView(R.id.llAddComment)
     LinearLayout llAddComment;
+    @InjectView(R.id.etComment)
+    EditText etComment;
+    @InjectView(R.id.btnSendComment)
+    SendCommentButton btnSendComment;
 
     private CommentsAdapter commentsAdapter;
     private int drawingStartLocation;
@@ -45,6 +52,7 @@ public class CommentsActivity extends ActionBarActivity {
         ButterKnife.inject(this);
         setupToolbar();
         setupComments();
+        setupSendCommentButton();
 
         drawingStartLocation = getIntent().getIntExtra(ARG_DRAWING_START_LOCATION, 0);
         if (savedInstanceState == null) {
@@ -82,11 +90,15 @@ public class CommentsActivity extends ActionBarActivity {
         });
     }
 
+    private void setupSendCommentButton() {
+        btnSendComment.setOnSendClickListener(this);
+    }
+
     private void startIntroAnimation() {
         ViewCompat.setElevation(toolbar, 0);
         contentRoot.setScaleY(0.1f);
         contentRoot.setPivotY(drawingStartLocation);
-        llAddComment.setTranslationY(100);
+        llAddComment.setTranslationY(200);
 
         contentRoot.animate()
                 .scaleY(1)
@@ -134,12 +146,25 @@ public class CommentsActivity extends ActionBarActivity {
                 .start();
     }
 
-    @OnClick(R.id.btnSendComment)
-    public void onSendCommentClick() {
-        commentsAdapter.addItem();
-        commentsAdapter.setAnimationsLocked(false);
-        commentsAdapter.setDelayEnterAnimation(false);
-        rvComments.smoothScrollBy(0, rvComments.getChildAt(0).getHeight() * commentsAdapter.getItemCount());
+    @Override
+    public void onSendClickListener(View v) {
+        if (validateComment()) {
+            commentsAdapter.addItem();
+            commentsAdapter.setAnimationsLocked(false);
+            commentsAdapter.setDelayEnterAnimation(false);
+            rvComments.smoothScrollBy(0, rvComments.getChildAt(0).getHeight() * commentsAdapter.getItemCount());
+
+            etComment.setText(null);
+            btnSendComment.setCurrentState(SendCommentButton.STATE_DONE, true);
+        }
     }
 
+    private boolean validateComment() {
+        if (TextUtils.isEmpty(etComment.getText())) {
+            btnSendComment.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake_error));
+            return false;
+        }
+
+        return true;
+    }
 }
