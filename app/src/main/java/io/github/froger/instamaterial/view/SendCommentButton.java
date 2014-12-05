@@ -18,14 +18,13 @@ public class SendCommentButton extends ViewAnimator implements View.OnClickListe
     private static final long RESET_STATE_DELAY_MILLIS = 2000;
 
     private int currentState;
-    private boolean changeStateAnimated;
 
     private OnSendClickListener onSendClickListener;
 
     private Runnable revertStateRunnable = new Runnable() {
         @Override
         public void run() {
-            setCurrentState(STATE_SEND, changeStateAnimated);
+            setCurrentState(STATE_SEND);
         }
     };
 
@@ -56,12 +55,11 @@ public class SendCommentButton extends ViewAnimator implements View.OnClickListe
         super.onDetachedFromWindow();
     }
 
-    public void setCurrentState(int state, boolean animated) {
+    public void setCurrentState(int state) {
         if (state == currentState) {
             return;
         }
 
-        changeStateAnimated = animated;
         currentState = state;
         if (state == STATE_DONE) {
             setEnabled(false);
@@ -89,7 +87,7 @@ public class SendCommentButton extends ViewAnimator implements View.OnClickListe
 
     @Override
     public void setOnClickListener(OnClickListener l) {
-        //Do nothing
+        //Do nothing, you have you own onClickListener implementation (OnSendClickListener)
     }
 
     public interface OnSendClickListener {

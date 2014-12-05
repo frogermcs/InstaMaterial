@@ -155,7 +155,7 @@ public class CommentsActivity extends ActionBarActivity implements SendCommentBu
             rvComments.smoothScrollBy(0, rvComments.getChildAt(0).getHeight() * commentsAdapter.getItemCount());
 
             etComment.setText(null);
-            btnSendComment.setCurrentState(SendCommentButton.STATE_DONE, true);
+            btnSendComment.setCurrentState(SendCommentButton.STATE_DONE);
         }
     }
 
