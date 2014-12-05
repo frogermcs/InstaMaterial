@@ -3,7 +3,7 @@ apply plugin: 'hugo'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
         applicationId "io.github.froger.instamaterial"
