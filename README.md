@@ -19,7 +19,7 @@ Implemented elements and effects:
 
 ---
 
-[Comments transition](http://frogermcs.github.io/Instagram-with-Material-Design-concept-part-2-Comments/)
+[Comments transition](http://frogermcs.github.io/Instagram-with-Material-Design-concept-part-2-Comments-transition/)
 
 Implemented elements and effects:
 
