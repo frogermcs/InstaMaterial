@@ -65,6 +65,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         holder.btnComments.setOnClickListener(this);
         holder.btnComments.setTag(position);
+        holder.btnMore.setOnClickListener(this);
+        holder.btnMore.setTag(position);
     }
 
     @Override
@@ -74,9 +76,14 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnComments) {
+        final int viewId = v.getId();
+        if (viewId == R.id.btnComments) {
             if (onFeedItemClickListener != null) {
                 onFeedItemClickListener.onCommentsClick(v, (Integer) v.getTag());
+            }
+        } else if (viewId == R.id.btnMore) {
+            if (onFeedItemClickListener != null) {
+                onFeedItemClickListener.onMoreClick(v, (Integer) v.getTag());
             }
         }
     }
@@ -100,6 +107,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         ImageButton btnComments;
         @InjectView(R.id.btnLike)
         ImageButton btnLike;
+        @InjectView(R.id.btnMore)
+        ImageButton btnMore;
 
         public CellFeedViewHolder(View view) {
             super(view);
@@ -109,5 +118,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     public interface OnFeedItemClickListener {
         public void onCommentsClick(View v, int position);
+        public void onMoreClick(View v, int position);
     }
 }
