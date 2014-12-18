@@ -39,3 +39,14 @@ Implemented elements and effects:
 * RecyclerView smoothness
 
 [![Feed and comment buttons](http://img.youtube.com/vi/GWKiN3la_CQ/0.jpg)](http://www.youtube.com/watch?v=GWKiN3la_CQ)
+
+---
+
+[Feed context menu](http://frogermcs.github.io/InstaMaterial-concept-part-4-feed-context-menu/)
+
+Implemented elements and effects:
+
+* Floating context menu for feed item
+
+[![Context menu](http://img.youtube.com/vi/eQwFwJ4Glyc/0.jpg)](http://www.youtube.com/watch?v=eQwFwJ4Glyc)
+
