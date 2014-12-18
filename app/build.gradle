@@ -3,7 +3,7 @@ apply plugin: 'hugo'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "io.github.froger.instamaterial"
@@ -17,13 +17,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:appcompat-v7:21.0.0"
+    compile "com.android.support:appcompat-v7:21.0.3"
     compile 'com.android.support:support-v13:21.+'
     compile 'com.android.support:support-v4:21.+'
     compile 'com.android.support:palette-v7:+'
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.android.support:cardview-v7:21.0.+'
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.jakewharton.timber:timber:2.5.0'
     compile 'com.facebook.rebound:rebound:0.3.6'
     compile 'com.squareup.picasso:picasso:2.4.0'
