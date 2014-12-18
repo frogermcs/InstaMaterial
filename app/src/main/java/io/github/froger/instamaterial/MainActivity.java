@@ -14,12 +14,16 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.github.froger.instamaterial.view.FeedContextMenu;
+import io.github.froger.instamaterial.view.FeedContextMenuManager;
 
 
-public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFeedItemClickListener {
+public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFeedItemClickListener,
+        FeedContextMenu.OnFeedContextMenuItemClickListener {
     private static final int ANIM_DURATION_TOOLBAR = 300;
     private static final int ANIM_DURATION_FAB = 400;
 
@@ -70,6 +74,12 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
         feedAdapter = new FeedAdapter(this);
         feedAdapter.setOnFeedItemClickListener(this);
         rvFeed.setAdapter(feedAdapter);
+        rvFeed.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                FeedContextMenuManager.getInstance().onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
 
     @Override
@@ -135,6 +145,27 @@ public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFee
 
     @Override
     public void onMoreClick(View v, int itemPosition) {
-        
+        FeedContextMenuManager.getInstance().toggleContextMenuFromView(v, itemPosition, this);
     }
+
+    @Override
+    public void onReportClick(int feedItem) {
+        FeedContextMenuManager.getInstance().hideContextMenu();
+    }
+
+    @Override
+    public void onSharePhotoClick(int feedItem) {
+        FeedContextMenuManager.getInstance().hideContextMenu();
+    }
+
+    @Override
+    public void onCopyShareUrlClick(int feedItem) {
+        FeedContextMenuManager.getInstance().hideContextMenu();
+    }
+
+    @Override
+    public void onCancelClick(int feedItem) {
+        FeedContextMenuManager.getInstance().hideContextMenu();
+    }
+
 }
