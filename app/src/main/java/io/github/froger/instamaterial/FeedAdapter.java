@@ -1,13 +1,25 @@
 package io.github.froger.instamaterial;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextSwitcher;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -23,6 +35,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     private int itemsCount = 0;
     private boolean animateItems = false;
 
+    private final Map<Integer, Integer> likesCount = new HashMap<>();
     private OnFeedItemClickListener onFeedItemClickListener;
 
     public FeedAdapter(Context context) {
@@ -62,6 +75,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
             holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
         }
+        updateLikesCounter(holder, false);
 
         holder.btnComments.setOnClickListener(this);
         holder.btnComments.setTag(position);
@@ -72,6 +86,21 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public int getItemCount() {
         return itemsCount;
+    }
+
+    private void updateLikesCounter(CellFeedViewHolder holder, boolean animated) {
+        int currentLikesCount = likesCount.get(holder.getPosition()) + 1;
+        String likesCountText = context.getResources().getQuantityString(
+                R.plurals.likes_count, currentLikesCount, currentLikesCount
+        );
+
+        if (animated) {
+            holder.tsLikesCounter.setText(likesCountText);
+        } else {
+            holder.tsLikesCounter.setCurrentText(likesCountText);
+        }
+
+        likesCount.put(holder.getPosition(), currentLikesCount);
     }
 
     @Override
@@ -91,7 +120,14 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     public void updateItems(boolean animated) {
         itemsCount = 10;
         animateItems = animated;
+        fillLikesWithRandomValues();
         notifyDataSetChanged();
+    }
+
+    private void fillLikesWithRandomValues() {
+        for (int i = 0; i < getItemCount(); i++) {
+            likesCount.put(i, new Random().nextInt(100));
+        }
     }
 
     public void setOnFeedItemClickListener(OnFeedItemClickListener onFeedItemClickListener) {
@@ -100,7 +136,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     public static class CellFeedViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.ivFeedCenter)
-        SquaredImageView ivFeedCenter;
+        ImageView ivFeedCenter;
         @InjectView(R.id.ivFeedBottom)
         ImageView ivFeedBottom;
         @InjectView(R.id.btnComments)
@@ -109,6 +145,12 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         ImageButton btnLike;
         @InjectView(R.id.btnMore)
         ImageButton btnMore;
+        @InjectView(R.id.vBgLike)
+        View vBgLike;
+        @InjectView(R.id.ivLike)
+        ImageView ivLike;
+        @InjectView(R.id.tsLikesCounter)
+        TextSwitcher tsLikesCounter;
 
         public CellFeedViewHolder(View view) {
             super(view);
@@ -118,6 +160,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     public interface OnFeedItemClickListener {
         public void onCommentsClick(View v, int position);
+
         public void onMoreClick(View v, int position);
     }
 }
