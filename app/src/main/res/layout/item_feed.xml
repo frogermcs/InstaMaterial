@@ -59,7 +59,7 @@
                 android:id="@+id/btnLike"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/btn_feed_action"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_heart_outline_grey" />
 
             <ImageButton
