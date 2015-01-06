@@ -28,6 +28,7 @@ import butterknife.InjectView;
  * Created by froger_mcs on 05.11.14.
  */
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+    private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator(4);
 
@@ -88,6 +89,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         holder.btnComments.setTag(position);
         holder.btnMore.setOnClickListener(this);
         holder.btnMore.setTag(position);
+        holder.ivFeedCenter.setOnClickListener(this);
+        holder.ivFeedCenter.setTag(holder);
         holder.btnLike.setOnClickListener(this);
         holder.btnLike.setTag(holder);
 
@@ -180,7 +183,66 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 updateLikesCounter(holder, true);
                 updateHeartButton(holder, true);
             }
+        } else if (viewId == R.id.ivFeedCenter) {
+            CellFeedViewHolder holder = (CellFeedViewHolder) view.getTag();
+            if (!likedPositions.contains(holder.getPosition())) {
+                likedPositions.add(holder.getPosition());
+                updateLikesCounter(holder, true);
+                animatePhotoLike(holder);
+                updateHeartButton(holder, false);
             }
+        }
+    }
+
+    private void animatePhotoLike(final CellFeedViewHolder holder) {
+        if (!likeAnimations.containsKey(holder)) {
+            holder.vBgLike.setVisibility(View.VISIBLE);
+            holder.ivLike.setVisibility(View.VISIBLE);
+
+            holder.vBgLike.setScaleY(0.1f);
+            holder.vBgLike.setScaleX(0.1f);
+            holder.vBgLike.setAlpha(1f);
+            holder.ivLike.setScaleY(0.1f);
+            holder.ivLike.setScaleX(0.1f);
+
+            AnimatorSet animatorSet = new AnimatorSet();
+            likeAnimations.put(holder, animatorSet);
+
+            ObjectAnimator bgScaleYAnim = ObjectAnimator.ofFloat(holder.vBgLike, "scaleY", 0.1f, 1f);
+            bgScaleYAnim.setDuration(200);
+            bgScaleYAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
+            ObjectAnimator bgScaleXAnim = ObjectAnimator.ofFloat(holder.vBgLike, "scaleX", 0.1f, 1f);
+            bgScaleXAnim.setDuration(200);
+            bgScaleXAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
+            ObjectAnimator bgAlphaAnim = ObjectAnimator.ofFloat(holder.vBgLike, "alpha", 1f, 0f);
+            bgAlphaAnim.setDuration(200);
+            bgAlphaAnim.setStartDelay(150);
+            bgAlphaAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
+
+            ObjectAnimator imgScaleUpYAnim = ObjectAnimator.ofFloat(holder.ivLike, "scaleY", 0.1f, 1f);
+            imgScaleUpYAnim.setDuration(300);
+            imgScaleUpYAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
+            ObjectAnimator imgScaleUpXAnim = ObjectAnimator.ofFloat(holder.ivLike, "scaleX", 0.1f, 1f);
+            imgScaleUpXAnim.setDuration(300);
+            imgScaleUpXAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
+
+            ObjectAnimator imgScaleDownYAnim = ObjectAnimator.ofFloat(holder.ivLike, "scaleY", 1f, 0f);
+            imgScaleDownYAnim.setDuration(300);
+            imgScaleDownYAnim.setInterpolator(ACCELERATE_INTERPOLATOR);
+            ObjectAnimator imgScaleDownXAnim = ObjectAnimator.ofFloat(holder.ivLike, "scaleX", 1f, 0f);
+            imgScaleDownXAnim.setDuration(300);
+            imgScaleDownXAnim.setInterpolator(ACCELERATE_INTERPOLATOR);
+
+            animatorSet.playTogether(bgScaleYAnim, bgScaleXAnim, bgAlphaAnim, imgScaleUpYAnim, imgScaleUpXAnim);
+            animatorSet.play(imgScaleDownYAnim).with(imgScaleDownXAnim).after(imgScaleUpYAnim);
+
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    resetLikeAnimationState(holder);
+                }
+            });
+            animatorSet.start();
         }
     }
 

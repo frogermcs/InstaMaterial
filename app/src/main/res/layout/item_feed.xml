@@ -19,10 +19,30 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_feed_top" />
 
-        <io.github.froger.instamaterial.SquaredImageView
-            android:id="@+id/ivFeedCenter"
+        <io.github.froger.instamaterial.view.SquaredFrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFeedCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:id="@+id/vBgLike"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_like_circle_background" />
+
+            <ImageView
+                android:id="@+id/ivLike"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:src="@drawable/ic_heart_outline_white" />
+
+        </io.github.froger.instamaterial.view.SquaredFrameLayout>
 
         <ImageView
             android:id="@+id/ivFeedBottom"
