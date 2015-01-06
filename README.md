@@ -11,6 +11,7 @@ Source code for implementation of Instagram with Material Design (based on Emman
 Implemented elements and effects:
 
 * Application intro transitions 
+
 * Toolbar
 * Floating action button
 * RecyclerView
@@ -34,6 +35,7 @@ Implemented elements and effects:
 Implemented elements and effects:
 
 * Send button animation in comments view
+
 * ViewAnimator
 * Ripples
 * RecyclerView smoothness
@@ -50,3 +52,18 @@ Implemented elements and effects:
 
 [![Context menu](http://img.youtube.com/vi/eQwFwJ4Glyc/0.jpg)](http://www.youtube.com/watch?v=eQwFwJ4Glyc)
 
+---
+
+[Like action effects](http://frogermcs.github.io/InstaMaterial-concept-part-5-like_effects/)
+
+Implemented elements and effects:
+
+* Like counter
+* Like button animation
+* Like photo animation
+
+* AnimatorSet
+* ObjectAnimator
+* TextSwitcher
+
+[![Like action effects](http://img.youtube.com/vi/KbJQ99EY5Yk/0.jpg)](http://www.youtube.com/watch?v=KbJQ99EY5Yk)
