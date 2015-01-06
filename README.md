@@ -52,7 +52,7 @@ Implemented elements and effects:
 
 ---
 
-[Like action effects](http://frogermcs.github.io/InstaMaterial-concept-part-5-like_effects/)
+[Like action effects](http://frogermcs.github.io/InstaMaterial-concept-part-5-like_action_effects/)
 
 Implemented elements and effects:
 
