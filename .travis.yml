@@ -1,0 +1,16 @@
+language: android
+
+android:
+  components:
+    - build-tools-21.1.2
+    - android-21
+
+jdk:
+  - oraclejdk7
+
+notifications:
+  email: true
+
+cache:
+  directories:
+    - $HOME/.m2
