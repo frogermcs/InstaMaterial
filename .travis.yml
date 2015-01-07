@@ -5,6 +5,10 @@ android:
     - build-tools-21.1.2
     - android-21
 
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-21
+
 jdk:
   - oraclejdk7
 
