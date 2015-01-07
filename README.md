@@ -1,6 +1,8 @@
 InstaMaterial
 =============
 
+The most recent debug .apk is available [here](https://ship.io/builds/64ee12e9-1f90-46e8-a38b-ffcfc319ca41/build_steps/hPPFFzgu/artifacts/app-debug.apk?build_access_token=18d378baf0e0219da) (temporary).
+
 Source code for implementation of Instagram with Material Design (based on Emmanuel Pacamalan's concept). 
 
 [INSTAGRAM with Material Design](https://www.youtube.com/watch?v=ojwdmgmdR_Q) concept video
