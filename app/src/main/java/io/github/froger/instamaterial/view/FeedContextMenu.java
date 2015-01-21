@@ -1,13 +1,7 @@
 package io.github.froger.instamaterial.view;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -15,7 +9,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
-import timber.log.Timber;
 
 /**
  * Created by froger_mcs on 15.12.14.
