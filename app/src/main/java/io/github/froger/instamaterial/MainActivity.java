@@ -128,6 +128,10 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
     }
 
     @Override
+    public void onProfileClick(View v) {
+    }
+
+    @Override
     public void onReportClick(int feedItem) {
         FeedContextMenuManager.getInstance().hideContextMenu();
     }

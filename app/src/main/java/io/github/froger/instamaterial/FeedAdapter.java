@@ -52,7 +52,13 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(context).inflate(R.layout.item_feed, parent, false);
-        return new CellFeedViewHolder(view);
+        final CellFeedViewHolder cellFeedViewHolder = new CellFeedViewHolder(view);
+        cellFeedViewHolder.btnComments.setOnClickListener(this);
+        cellFeedViewHolder.btnMore.setOnClickListener(this);
+        cellFeedViewHolder.ivFeedCenter.setOnClickListener(this);
+        cellFeedViewHolder.btnLike.setOnClickListener(this);
+        cellFeedViewHolder.ivUserProfile.setOnClickListener(this);
+        return cellFeedViewHolder;
     }
 
     private void runEnterAnimation(View view, int position) {
@@ -85,14 +91,11 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         updateLikesCounter(holder, false);
         updateHeartButton(holder, false);
 
-        holder.btnComments.setOnClickListener(this);
         holder.btnComments.setTag(position);
-        holder.btnMore.setOnClickListener(this);
         holder.btnMore.setTag(position);
-        holder.ivFeedCenter.setOnClickListener(this);
         holder.ivFeedCenter.setTag(holder);
-        holder.btnLike.setOnClickListener(this);
         holder.btnLike.setTag(holder);
+
 
         if (likeAnimations.containsKey(holder)) {
             likeAnimations.get(holder).cancel();
@@ -191,6 +194,10 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 animatePhotoLike(holder);
                 updateHeartButton(holder, false);
             }
+        } else if (viewId == R.id.ivUserProfile) {
+            if (onFeedItemClickListener != null) {
+                onFeedItemClickListener.onProfileClick(view);
+            }
         }
     }
 
@@ -286,6 +293,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         ImageView ivLike;
         @InjectView(R.id.tsLikesCounter)
         TextSwitcher tsLikesCounter;
+        @InjectView(R.id.ivUserProfile)
+        ImageView ivUserProfile;
 
         public CellFeedViewHolder(View view) {
             super(view);
@@ -297,5 +306,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         public void onCommentsClick(View v, int position);
 
         public void onMoreClick(View v, int position);
+
+        public void onProfileClick(View v);
     }
 }
