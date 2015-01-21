@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_feed_toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvUserProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="?attr/actionBarSize" />
+
+    <ImageButton
+        android:id="@+id/btnCreate"
+        android:layout_width="@dimen/btn_fab_size"
+        android:layout_height="@dimen/btn_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/btn_fab_margins"
+        android:layout_marginRight="@dimen/btn_fab_margins"
+        android:background="@drawable/btn_fab_default"
+        android:elevation="@dimen/default_elevation"
+        android:src="@drawable/ic_instagram_white"
+        android:textSize="28sp" />
+</RelativeLayout>

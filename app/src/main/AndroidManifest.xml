@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.froger.instamaterial">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".InstaMaterialApplication"
         android:icon="@drawable/ic_launcher"
@@ -18,7 +20,11 @@
         <activity
             android:name="io.github.froger.instamaterial.CommentsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.CommentsActivity" />
+            android:theme="@style/AppTheme.TransparentActivity" />
+        <activity
+            android:name="io.github.froger.instamaterial.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentActivity" />
     </application>
 
 </manifest>
