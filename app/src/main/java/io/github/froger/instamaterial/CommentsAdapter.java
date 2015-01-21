@@ -31,7 +31,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public CommentsAdapter(Context context) {
         this.context = context;
-        avatarSize = context.getResources().getDimensionPixelSize(R.dimen.btn_fab_size);
+        avatarSize = context.getResources().getDimensionPixelSize(R.dimen.comment_avatar_size);
     }
 
     @Override
