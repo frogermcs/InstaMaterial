@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/vButtons"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?attr/colorAccent">
+
+        <ImageButton
+            android:id="@+id/btnGrid"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_grid_on_white"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/btnList"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_list_white"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/btnMap"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_place_white"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/btnTagged"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_label_white"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vUnderline"
+        android:layout_width="100dp"
+        android:layout_height="6dp"
+        android:layout_gravity="bottom"
+        android:background="#5be5ad" />
+</FrameLayout>
