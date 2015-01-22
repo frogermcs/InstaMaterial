@@ -32,7 +32,12 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public static final int TYPE_PROFILE_OPTIONS = 1;
     public static final int TYPE_PHOTO = 2;
 
+    private static final int USER_OPTIONS_ANIMATION_DELAY = 300;
+    private static final int MAX_PHOTO_ANIMATION_DELAY = 600;
+
     private static final int MIN_ITEMS_COUNT = 2;
+    private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
+
 
     private final Context context;
     private final int cellSize;
@@ -40,6 +45,10 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private final String profilePhoto;
     private final List<String> photos;
+
+    private boolean lockedAnimations = false;
+    private long profileHeaderAnimationStartTime = 0;
+    private int lastAnimatedItem = 0;
 
     public UserProfileAdapter(Context context) {
         this.context = context;
@@ -107,6 +116,14 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 .centerCrop()
                 .transform(new CircleTransformation())
                 .into(holder.ivUserProfilePhoto);
+        holder.vUserProfileRoot.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                holder.vUserProfileRoot.getViewTreeObserver().removeOnPreDrawListener(this);
+                animateUserProfileHeader(holder);
+                return false;
+            }
+        });
     }
 
     private void bindProfileOptions(final ProfileOptionsViewHolder holder) {
@@ -116,6 +133,7 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 holder.vButtons.getViewTreeObserver().removeOnPreDrawListener(this);
                 holder.vUnderline.getLayoutParams().width = holder.btnGrid.getWidth();
                 holder.vUnderline.requestLayout();
+                animateUserProfileOptions(holder);
                 return false;
             }
         });
@@ -129,6 +147,7 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 .into(holder.ivPhoto, new Callback() {
                     @Override
                     public void onSuccess() {
+                        animatePhoto(holder);
                     }
 
                     @Override
@@ -136,6 +155,60 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     }
                 });
+        if (lastAnimatedItem < position) lastAnimatedItem = position;
+    }
+
+    private void animateUserProfileHeader(ProfileHeaderViewHolder viewHolder) {
+        if (!lockedAnimations) {
+            profileHeaderAnimationStartTime = System.currentTimeMillis();
+
+            viewHolder.vUserProfileRoot.setTranslationY(-viewHolder.vUserProfileRoot.getHeight());
+            viewHolder.ivUserProfilePhoto.setTranslationY(-viewHolder.ivUserProfilePhoto.getHeight());
+            viewHolder.vUserDetails.setTranslationY(-viewHolder.vUserDetails.getHeight());
+            viewHolder.vUserStats.setAlpha(0);
+
+            viewHolder.vUserProfileRoot.animate().translationY(0).setDuration(300).setInterpolator(INTERPOLATOR);
+            viewHolder.ivUserProfilePhoto.animate().translationY(0).setDuration(300).setStartDelay(100).setInterpolator(INTERPOLATOR);
+            viewHolder.vUserDetails.animate().translationY(0).setDuration(300).setStartDelay(200).setInterpolator(INTERPOLATOR);
+            viewHolder.vUserStats.animate().alpha(1).setDuration(200).setStartDelay(400).setInterpolator(INTERPOLATOR).start();
+        }
+    }
+
+    private void animateUserProfileOptions(ProfileOptionsViewHolder viewHolder) {
+        if (!lockedAnimations) {
+            viewHolder.vButtons.setTranslationY(-viewHolder.vButtons.getHeight());
+            viewHolder.vUnderline.setScaleX(0);
+
+            viewHolder.vButtons.animate().translationY(0).setDuration(300).setStartDelay(USER_OPTIONS_ANIMATION_DELAY).setInterpolator(INTERPOLATOR);
+            viewHolder.vUnderline.animate().scaleX(1).setDuration(200).setStartDelay(USER_OPTIONS_ANIMATION_DELAY + 300).setInterpolator(INTERPOLATOR).start();
+        }
+    }
+
+    private void animatePhoto(PhotoViewHolder viewHolder) {
+        if (!lockedAnimations) {
+            if (lastAnimatedItem == viewHolder.getPosition()) {
+                setLockedAnimations(true);
+            }
+
+            long animationDelay = profileHeaderAnimationStartTime + MAX_PHOTO_ANIMATION_DELAY - System.currentTimeMillis();
+            if (profileHeaderAnimationStartTime == 0) {
+                animationDelay = viewHolder.getPosition() * 30 + MAX_PHOTO_ANIMATION_DELAY;
+            } else if (animationDelay < 0) {
+                animationDelay = viewHolder.getPosition() * 30;
+            } else {
+                animationDelay += viewHolder.getPosition() * 30;
+            }
+
+            viewHolder.flRoot.setScaleY(0);
+            viewHolder.flRoot.setScaleX(0);
+            viewHolder.flRoot.animate()
+                    .scaleY(1)
+                    .scaleX(1)
+                    .setDuration(200)
+                    .setInterpolator(INTERPOLATOR)
+                    .setStartDelay(animationDelay)
+                    .start();
+        }
     }
 
     @Override
@@ -191,5 +264,9 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(view);
             ButterKnife.inject(this, view);
         }
+    }
+
+    public void setLockedAnimations(boolean lockedAnimations) {
+        this.lockedAnimations = lockedAnimations;
     }
 }
