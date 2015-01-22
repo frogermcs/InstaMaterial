@@ -129,6 +129,11 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
 
     @Override
     public void onProfileClick(View v) {
+        int[] startingLocation = new int[2];
+        v.getLocationOnScreen(startingLocation);
+        startingLocation[0] += v.getWidth() / 2;
+        UserProfileActivity.startUserProfileFromLocation(startingLocation, this);
+        overridePendingTransition(0, 0);
     }
 
     @Override
