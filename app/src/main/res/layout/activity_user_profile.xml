@@ -8,11 +8,15 @@
         android:id="@+id/toolbar"
         layout="@layout/view_feed_toolbar" />
 
+    <io.github.froger.instamaterial.view.RevealBackgroundView
+        android:id="@+id/vRevealBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvUserProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
         android:paddingTop="?attr/actionBarSize" />
 
     <ImageButton
