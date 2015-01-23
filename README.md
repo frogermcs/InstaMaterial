@@ -68,3 +68,16 @@ Implemented elements and effects:
 * TextSwitcher
 
 [![Like action effects](http://img.youtube.com/vi/KbJQ99EY5Yk/0.jpg)](http://www.youtube.com/watch?v=KbJQ99EY5Yk)
+
+---
+
+[Like action effects](http://frogermcs.github.io/InstaMaterial-concept-part-6-user-profile/)
+
+Implemented elements and effects:
+
+* User profile
+* Circural user photo
+* Circural reveal transition
+* ViewPropertyAnimator
+
+[![Like action effects](http://img.youtube.com/vi/EmQM0B6QPac/0.jpg)](http://www.youtube.com/watch?v=EmQM0B6QPac)
