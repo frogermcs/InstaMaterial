@@ -71,7 +71,7 @@ Implemented elements and effects:
 
 ---
 
-[Like action effects](http://frogermcs.github.io/InstaMaterial-concept-part-6-user-profile/)
+[User profile](http://frogermcs.github.io/InstaMaterial-concept-part-6-user-profile/)
 
 Implemented elements and effects:
 
@@ -80,4 +80,4 @@ Implemented elements and effects:
 * Circural reveal transition
 * ViewPropertyAnimator
 
-[![Like action effects](http://img.youtube.com/vi/EmQM0B6QPac/0.jpg)](http://www.youtube.com/watch?v=EmQM0B6QPac)
+[![User profile](http://img.youtube.com/vi/EmQM0B6QPac/0.jpg)](http://www.youtube.com/watch?v=EmQM0B6QPac)
