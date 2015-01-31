@@ -81,3 +81,14 @@ Implemented elements and effects:
 * ViewPropertyAnimator
 
 [![User profile](http://img.youtube.com/vi/EmQM0B6QPac/0.jpg)](http://www.youtube.com/watch?v=EmQM0B6QPac)
+
+---
+
+[Navigation Drawer](http://frogermcs.github.io/InstaMaterial-concept-part-7-navigation-drawer/)
+
+Implemented elements and effects:
+
+* Navigation Drawer
+* DrawerLayoutIstaller
+
+[![User profile](http://img.youtube.com/vi/rRYN1le1-ZM/0.jpg)](http://www.youtube.com/watch?v=rRYN1le1-ZM)
