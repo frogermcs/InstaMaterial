@@ -1,20 +1,23 @@
 package io.github.froger.instamaterial;
 
-import android.support.annotation.Nullable;
+import android.os.Handler;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Optional;
+import io.github.froger.instamaterial.view.GlobalMenuView;
 
 /**
  * Created by Miroslaw Stanek on 19.01.15.
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends ActionBarActivity implements GlobalMenuView.OnHeaderClickListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -23,12 +26,26 @@ public class BaseActivity extends ActionBarActivity {
     ImageView ivLogo;
 
     private MenuItem inboxMenuItem;
+    private DrawerLayout drawerLayout;
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.inject(this);
         setupToolbar();
+        setupDrawer();
+    }
+
+    private void setupDrawer() {
+        GlobalMenuView menuView = new GlobalMenuView(this);
+        menuView.setOnHeaderClickListener(this);
+
+        drawerLayout = DrawerLayoutInstaller.from(this)
+                .drawerRoot(R.layout.drawer_root)
+                .drawerLeftView(menuView)
+                .drawerLeftWidth(Utils.dpToPx(300))
+                .withNavigationIconToggler(getToolbar())
+                .build();
     }
 
     protected void setupToolbar() {
@@ -56,5 +73,20 @@ public class BaseActivity extends ActionBarActivity {
 
     public ImageView getIvLogo() {
         return ivLogo;
+    }
+
+    @Override
+    public void onGlobalMenuHeaderClick(final View v) {
+        drawerLayout.closeDrawer(Gravity.START);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+                startingLocation[0] += v.getWidth() / 2;
+                UserProfileActivity.startUserProfileFromLocation(startingLocation, BaseActivity.this);
+                overridePendingTransition(0, 0);
+            }
+        }, 200);
     }
 }
