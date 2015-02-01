@@ -5,6 +5,8 @@ Source code for implementation of Instagram with Material Design (based on Emman
 
 [INSTAGRAM with Material Design](https://www.youtube.com/watch?v=ojwdmgmdR_Q) concept video
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-InstaMaterial-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/1462)
+
 ### Current build 
 
 The most recent debug .apk is available [here](https://ship.io/builds/64ee12e9-1f90-46e8-a38b-ffcfc319ca41/build_steps/hPPFFzgu/artifacts/app-debug.apk?build_access_token=18d378baf0e0219da) (temporary).
