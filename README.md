@@ -9,7 +9,9 @@ Source code for implementation of Instagram with Material Design (based on Emman
 
 ### Current build 
 
-The most recent debug .apk is available [here](https://ship.io/builds/64ee12e9-1f90-46e8-a38b-ffcfc319ca41/build_steps/hPPFFzgu/artifacts/app-debug.apk?build_access_token=18d378baf0e0219da) (temporary).
+The most recent app version is available in Google Play Store
+
+[!["Android app on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=io.github.froger.instamaterial)
 
 ## Blog posts
 [Getting started - opening the app](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real)
