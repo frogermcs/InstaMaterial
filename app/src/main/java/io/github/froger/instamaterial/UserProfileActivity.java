@@ -51,8 +51,8 @@ public class UserProfileActivity extends BaseActivity implements RevealBackgroun
                 }
             });
         } else {
-            userPhotosAdapter.setLockedAnimations(true);
             vRevealBackground.setToFinishedFrame();
+            userPhotosAdapter.setLockedAnimations(true);
         }
     }
 
