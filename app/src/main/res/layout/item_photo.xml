@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.github.froger.instamaterial.view.SquaredFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<io.github.froger.instamaterial.ui.view.SquaredFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flRoot"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -11,4 +11,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp" />
-</io.github.froger.instamaterial.view.SquaredFrameLayout>
+</io.github.froger.instamaterial.ui.view.SquaredFrameLayout>

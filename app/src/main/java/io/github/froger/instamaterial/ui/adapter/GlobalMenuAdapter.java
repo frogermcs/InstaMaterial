@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.github.froger.instamaterial.R;
 
 /**
  * Created by Miroslaw Stanek on 30.01.15.

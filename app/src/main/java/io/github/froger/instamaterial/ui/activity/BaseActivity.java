@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.activity;
 
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -12,7 +12,10 @@ import android.widget.ImageView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import io.github.froger.instamaterial.view.GlobalMenuView;
+import io.github.froger.instamaterial.ui.utils.DrawerLayoutInstaller;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.view.GlobalMenuView;
 
 /**
  * Created by Miroslaw Stanek on 19.01.15.

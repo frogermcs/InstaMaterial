@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.adapter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -23,6 +23,8 @@ import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
 
 /**
  * Created by froger_mcs on 05.11.14.

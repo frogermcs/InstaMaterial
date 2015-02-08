@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,8 +12,11 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 
 import butterknife.InjectView;
-import io.github.froger.instamaterial.view.FeedContextMenu;
-import io.github.froger.instamaterial.view.FeedContextMenuManager;
+import io.github.froger.instamaterial.ui.adapter.FeedAdapter;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.view.FeedContextMenu;
+import io.github.froger.instamaterial.ui.view.FeedContextMenuManager;
 
 
 public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItemClickListener,

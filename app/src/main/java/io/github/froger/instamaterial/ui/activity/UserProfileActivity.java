@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import butterknife.InjectView;
-import io.github.froger.instamaterial.view.RevealBackgroundView;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.ui.adapter.UserProfileAdapter;
+import io.github.froger.instamaterial.ui.view.RevealBackgroundView;
 
 /**
  * Created by Miroslaw Stanek on 14.01.15.

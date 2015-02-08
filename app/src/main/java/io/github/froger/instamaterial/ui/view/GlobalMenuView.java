@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial.view;
+package io.github.froger.instamaterial.ui.view;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 import com.squareup.picasso.Picasso;
 
-import io.github.froger.instamaterial.CircleTransformation;
-import io.github.froger.instamaterial.GlobalMenuAdapter;
+import io.github.froger.instamaterial.ui.utils.CircleTransformation;
+import io.github.froger.instamaterial.ui.adapter.GlobalMenuAdapter;
 import io.github.froger.instamaterial.R;
 
 /**

@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +22,9 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.github.froger.instamaterial.ui.utils.CircleTransformation;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
 
 /**
  * Created by Miroslaw Stanek on 20.01.15.
