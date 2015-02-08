@@ -23,8 +23,8 @@ dependencies {
     compile 'com.android.support:palette-v7:21.0.3'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.android.support:cardview-v7:21.0.3'
-    compile 'com.jakewharton:butterknife:6.0.0'
-    compile 'com.jakewharton.timber:timber:2.5.0'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.jakewharton.timber:timber:2.5.1'
     compile 'com.facebook.rebound:rebound:0.3.6'
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.0'
 }
