@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.Optional;
 import io.github.froger.instamaterial.ui.utils.DrawerLayoutInstaller;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
@@ -22,9 +23,11 @@ import io.github.froger.instamaterial.ui.view.GlobalMenuView;
  */
 public class BaseActivity extends ActionBarActivity implements GlobalMenuView.OnHeaderClickListener {
 
+    @Optional
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
 
+    @Optional
     @InjectView(R.id.ivLogo)
     ImageView ivLogo;
 
@@ -36,7 +39,20 @@ public class BaseActivity extends ActionBarActivity implements GlobalMenuView.On
         super.setContentView(layoutResID);
         ButterKnife.inject(this);
         setupToolbar();
-        setupDrawer();
+        if (shouldInstallDrawer()) {
+            setupDrawer();
+        }
+    }
+
+    protected void setupToolbar() {
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.setNavigationIcon(R.drawable.ic_menu_white);
+        }
+    }
+
+    protected boolean shouldInstallDrawer() {
+        return true;
     }
 
     private void setupDrawer() {
@@ -49,13 +65,6 @@ public class BaseActivity extends ActionBarActivity implements GlobalMenuView.On
                 .drawerLeftWidth(Utils.dpToPx(300))
                 .withNavigationIconToggler(getToolbar())
                 .build();
-    }
-
-    protected void setupToolbar() {
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.ic_menu_white);
-        }
     }
 
     @Override
