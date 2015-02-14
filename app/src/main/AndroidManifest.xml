@@ -37,6 +37,10 @@
             android:name=".ui.activity.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity" />
+        <activity
+            android:name=".ui.activity.TakePhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentActivity.FullScreen" />
     </application>
 
 </manifest>

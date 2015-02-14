@@ -12,6 +12,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import io.github.froger.instamaterial.ui.adapter.FeedAdapter;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
@@ -159,4 +160,12 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
         FeedContextMenuManager.getInstance().hideContextMenu();
     }
 
+    @OnClick(R.id.btnCreate)
+    public void onTakePhotoClick() {
+        int[] startingLocation = new int[2];
+        btnCreate.getLocationOnScreen(startingLocation);
+        startingLocation[0] += btnCreate.getWidth() / 2;
+        TakePhotoActivity.startCameraFromLocation(startingLocation, this);
+        overridePendingTransition(0, 0);
+    }
 }
