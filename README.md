@@ -9,9 +9,7 @@ Source code for implementation of Instagram with Material Design (based on Emman
 
 ### Current build 
 
-The most recent app version is available in Google Play Store
-
-[!["Android app on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=io.github.froger.instamaterial)
+The most recent app version is available [here](https://github.com/frogermcs/frogermcs.github.io/raw/master/files/9/instamaterial-debug.apk)
 
 ## Blog posts
 [Getting started - opening the app](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real)
@@ -95,4 +93,16 @@ Implemented elements and effects:
 * Navigation Drawer
 * DrawerLayoutIstaller
 
-[![User profile](http://img.youtube.com/vi/rRYN1le1-ZM/0.jpg)](http://www.youtube.com/watch?v=rRYN1le1-ZM)
+[![Navigation Drawer](http://img.youtube.com/vi/rRYN1le1-ZM/0.jpg)](http://www.youtube.com/watch?v=rRYN1le1-ZM)
+
+---
+
+[Capturing photo](http://frogermcs.github.io/InstaMaterial-concept-part-8-capturing-photo/)
+
+Implemented elements and effects:
+
+* Camera preview
+* Capturing photo
+* Circular reveal
+
+[![Capturing photo](http://img.youtube.com/vi/0w3lGJIISTo/0.jpg)](http://www.youtube.com/watch?v=0w3lGJIISTo)
