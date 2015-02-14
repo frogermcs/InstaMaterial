@@ -27,4 +27,5 @@ dependencies {
     compile 'com.jakewharton.timber:timber:2.5.1'
     compile 'com.facebook.rebound:rebound:0.3.6'
     compile 'com.squareup.picasso:picasso:2.5.0'
+    compile 'com.commonsware.cwac:camera:0.6.12'
 }
