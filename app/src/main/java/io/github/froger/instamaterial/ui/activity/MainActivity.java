@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,8 +12,12 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 
 import butterknife.InjectView;
-import io.github.froger.instamaterial.view.FeedContextMenu;
-import io.github.froger.instamaterial.view.FeedContextMenuManager;
+import butterknife.OnClick;
+import io.github.froger.instamaterial.ui.adapter.FeedAdapter;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.view.FeedContextMenu;
+import io.github.froger.instamaterial.ui.view.FeedContextMenuManager;
 
 
 public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItemClickListener,
@@ -156,4 +160,12 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
         FeedContextMenuManager.getInstance().hideContextMenu();
     }
 
+    @OnClick(R.id.btnCreate)
+    public void onTakePhotoClick() {
+        int[] startingLocation = new int[2];
+        btnCreate.getLocationOnScreen(startingLocation);
+        startingLocation[0] += btnCreate.getWidth() / 2;
+        TakePhotoActivity.startCameraFromLocation(startingLocation, this);
+        overridePendingTransition(0, 0);
+    }
 }

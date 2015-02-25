@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial.view;
+package io.github.froger.instamaterial.ui.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;

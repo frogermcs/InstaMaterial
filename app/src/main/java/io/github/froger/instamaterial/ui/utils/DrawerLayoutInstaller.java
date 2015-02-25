@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.utils;
 
 import android.app.Activity;
 import android.content.res.Resources;

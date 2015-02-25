@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_feed_top" />
 
-        <io.github.froger.instamaterial.view.SquaredFrameLayout
+        <io.github.froger.instamaterial.ui.view.SquaredFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -43,7 +43,7 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_heart_outline_white" />
 
-        </io.github.froger.instamaterial.view.SquaredFrameLayout>
+        </io.github.froger.instamaterial.ui.view.SquaredFrameLayout>
 
         <ImageView
             android:id="@+id/ivFeedBottom"

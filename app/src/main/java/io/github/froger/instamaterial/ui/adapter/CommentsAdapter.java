@@ -1,4 +1,4 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.adapter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.ui.utils.RoundedTransformation;
 
 /**
  * Created by froger_mcs on 11.11.14.

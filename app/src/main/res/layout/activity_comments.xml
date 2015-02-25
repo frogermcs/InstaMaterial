@@ -55,7 +55,7 @@
                 android:textColor="#555555"
                 android:textSize="14sp" />
 
-            <io.github.froger.instamaterial.view.SendCommentButton
+            <io.github.froger.instamaterial.ui.view.SendCommentButton
                 android:id="@+id/btnSendComment"
                 android:layout_width="72dp"
                 android:layout_height="match_parent"

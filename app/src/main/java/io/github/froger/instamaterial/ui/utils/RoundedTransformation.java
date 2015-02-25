@@ -1,20 +1,16 @@
-package io.github.froger.instamaterial;
+package io.github.froger.instamaterial.ui.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.squareup.picasso.Transformation;
 
 /**
- * Created by Miroslaw Stanek on 20.01.15.
+ * Created by froger_mcs on 11.08.2014.
  */
-public class CircleTransformation implements Transformation {
-
-    private static final int STROKE_WIDTH = 6;
-
+public class RoundedTransformation implements Transformation {
     @Override
     public Bitmap transform(Bitmap source) {
         int size = Math.min(source.getWidth(), source.getHeight());
@@ -30,20 +26,13 @@ public class CircleTransformation implements Transformation {
         Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
 
         Canvas canvas = new Canvas(bitmap);
-
-        Paint avatarPaint = new Paint();
+        Paint paint = new Paint();
         BitmapShader shader = new BitmapShader(squaredBitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
-        avatarPaint.setShader(shader);
-
-        Paint outlinePaint = new Paint();
-        outlinePaint.setColor(Color.WHITE);
-        outlinePaint.setStyle(Paint.Style.STROKE);
-        outlinePaint.setStrokeWidth(STROKE_WIDTH);
-        outlinePaint.setAntiAlias(true);
+        paint.setShader(shader);
+        paint.setAntiAlias(true);
 
         float r = size / 2f;
-        canvas.drawCircle(r, r, r, avatarPaint);
-        canvas.drawCircle(r, r, r - STROKE_WIDTH / 2, outlinePaint);
+        canvas.drawCircle(r, r, r, paint);
 
         squaredBitmap.recycle();
         return bitmap;
@@ -51,6 +40,6 @@ public class CircleTransformation implements Transformation {
 
     @Override
     public String key() {
-        return "circleTransformation()";
+        return "circle";
     }
 }
