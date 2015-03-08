@@ -4,17 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -28,9 +32,13 @@ import com.commonsware.cwac.camera.CameraView;
 import com.commonsware.cwac.camera.PictureTransaction;
 import com.commonsware.cwac.camera.SimpleCameraHost;
 
+import java.io.File;
+
 import butterknife.InjectView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import io.github.froger.instamaterial.R;
+import io.github.froger.instamaterial.Utils;
 import io.github.froger.instamaterial.ui.adapter.PhotoFiltersAdapter;
 import io.github.froger.instamaterial.ui.view.RevealBackgroundView;
 
@@ -68,6 +76,8 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     private boolean pendingIntro;
     private int currentState;
 
+    private File photoPath;
+
     public static void startCameraFromLocation(int[] startingLocation, Activity startingActivity) {
         Intent intent = new Intent(startingActivity, TakePhotoActivity.class);
         intent.putExtra(ARG_REVEAL_START_LOCATION, startingLocation);
@@ -78,6 +88,7 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
+        updateStatusBarColor();
         updateState(STATE_TAKE_PHOTO);
         setupRevealBackground(savedInstanceState);
         setupPhotoFilters();
@@ -92,6 +103,13 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
                 return true;
             }
         });
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void updateStatusBarColor() {
+        if (Utils.isAndroid5()) {
+            getWindow().setStatusBarColor(0xff111111);
+        }
     }
 
     private void setupRevealBackground(Bundle savedInstanceState) {
@@ -139,8 +157,13 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     @OnClick(R.id.btnTakePhoto)
     public void onTakePhotoClick() {
         btnTakePhoto.setEnabled(false);
-        cameraView.takePicture(true, false);
+        cameraView.takePicture(true, true);
         animateShutter();
+    }
+
+    @OnClick(R.id.btnAccept)
+    public void onAcceptClick() {
+        PublishActivity.openWithPhotoUri(this, Uri.fromFile(photoPath));
     }
 
     private void animateShutter() {
@@ -222,6 +245,12 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
                     showTakenPicture(bitmap);
                 }
             });
+        }
+
+        @Override
+        public void saveImage(PictureTransaction xact, byte[] image) {
+            super.saveImage(xact, image);
+            photoPath = getPhotoPath();
         }
     }
 

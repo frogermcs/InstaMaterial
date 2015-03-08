@@ -7,4 +7,5 @@
     <dimen name="comment_avatar_size">56dp</dimen>
     <dimen name="user_profile_avatar_size">88dp</dimen>
     <dimen name="global_menu_avatar_size">64dp</dimen>
+    <dimen name="publish_photo_thumbnail_size">96dp</dimen>
 </resources>

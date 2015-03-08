@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- item_feed.xml -->
+<?xml version="1.0" encoding="utf-8"?><!-- item_feed.xml -->
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
@@ -21,6 +20,7 @@
             android:src="@drawable/ic_feed_top" />
 
         <io.github.froger.instamaterial.ui.view.SquaredFrameLayout
+            android:id="@+id/vImageRoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -34,14 +34,16 @@
                 android:id="@+id/vBgLike"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_like_circle_background" />
+                android:background="@drawable/bg_like_circle_background"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/ivLike"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="center"
-                android:src="@drawable/ic_heart_outline_white" />
+                android:src="@drawable/ic_heart_outline_white"
+                android:visibility="gone" />
 
         </io.github.froger.instamaterial.ui.view.SquaredFrameLayout>
 
