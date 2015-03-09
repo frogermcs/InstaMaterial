@@ -106,3 +106,14 @@ Implemented elements and effects:
 * Circular reveal
 
 [![Capturing photo](http://img.youtube.com/vi/0w3lGJIISTo/0.jpg)](http://www.youtube.com/watch?v=0w3lGJIISTo)
+
+---
+
+[Publishing photo](http://frogermcs.github.io/InstaMaterial-concept-part-9-photo-publishing/)
+
+Implemented elements and effects:
+
+* Custom view drawing
+* Intent flags
+
+[![Publishing photo](http://img.youtube.com/vi/YgvE3cl34ps/0.jpg)](http://www.youtube.com/watch?v=YgvE3cl34ps)
