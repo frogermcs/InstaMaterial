@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,6 +17,7 @@ import butterknife.Optional;
 import io.github.froger.instamaterial.ui.utils.DrawerLayoutInstaller;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.view.FeedContextMenuManager;
 import io.github.froger.instamaterial.ui.view.GlobalMenuView;
 
 /**
@@ -100,5 +102,11 @@ public class BaseActivity extends ActionBarActivity implements GlobalMenuView.On
                 overridePendingTransition(0, 0);
             }
         }, 200);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        FeedContextMenuManager.getInstance().hideContextMenu();
+        return super.dispatchTouchEvent(ev);
     }
 }
