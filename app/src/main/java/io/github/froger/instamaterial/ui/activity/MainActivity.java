@@ -5,12 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.ImageButton;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -31,7 +31,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     @InjectView(R.id.rvFeed)
     RecyclerView rvFeed;
     @InjectView(R.id.btnCreate)
-    ImageButton btnCreate;
+    FloatingActionButton fabCreate;
 
     private FeedAdapter feedAdapter;
 
@@ -99,7 +99,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     }
 
     private void startIntroAnimation() {
-        btnCreate.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
+        fabCreate.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
 
         int actionbarSize = Utils.dpToPx(56);
         getToolbar().setTranslationY(-actionbarSize);
@@ -128,7 +128,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     }
 
     private void startContentAnimation() {
-        btnCreate.animate()
+        fabCreate.animate()
                 .translationY(0)
                 .setInterpolator(new OvershootInterpolator(1.f))
                 .setStartDelay(300)
@@ -184,8 +184,8 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     @OnClick(R.id.btnCreate)
     public void onTakePhotoClick() {
         int[] startingLocation = new int[2];
-        btnCreate.getLocationOnScreen(startingLocation);
-        startingLocation[0] += btnCreate.getWidth() / 2;
+        fabCreate.getLocationOnScreen(startingLocation);
+        startingLocation[0] += fabCreate.getWidth() / 2;
         TakePhotoActivity.startCameraFromLocation(startingLocation, this);
         overridePendingTransition(0, 0);
     }
