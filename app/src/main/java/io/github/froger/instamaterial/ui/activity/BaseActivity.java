@@ -3,6 +3,7 @@ package io.github.froger.instamaterial.ui.activity;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -21,7 +22,7 @@ import io.github.froger.instamaterial.ui.view.GlobalMenuView;
 /**
  * Created by Miroslaw Stanek on 19.01.15.
  */
-public class BaseActivity extends ActionBarActivity implements GlobalMenuView.OnHeaderClickListener {
+public class BaseActivity extends AppCompatActivity implements GlobalMenuView.OnHeaderClickListener {
 
     @Optional
     @InjectView(R.id.toolbar)
