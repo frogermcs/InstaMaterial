@@ -7,9 +7,16 @@ Source code for implementation of Instagram with Material Design (based on Emman
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-InstaMaterial-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/1462)
 
+## Summary
+The summary of making of InstaMaterial project is available on blog:  [Instagram with Material Design concept is getting real](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real-the-summary/)
+
 ### Current build 
 
-The most recent app version is available [here](https://github.com/frogermcs/frogermcs.github.io/raw/master/files/9/instamaterial-debug.apk)
+The most recent app version is available [here](https://github.com/frogermcs/frogermcs.github.io/raw/master/files/10/InstaMaterial-release-1.0.1-2.apk)
+
+### Full showcase of application
+
+[![App showcase](http://img.youtube.com/vi/VpLP__Vupxw/0.jpg)](http://www.youtube.com/watch?v=VpLP__Vupxw)
 
 ## Blog posts
 [Getting started - opening the app](http://frogermcs.github.io/Instagram-with-Material-Design-concept-is-getting-real)
@@ -106,3 +113,14 @@ Implemented elements and effects:
 * Circular reveal
 
 [![Capturing photo](http://img.youtube.com/vi/0w3lGJIISTo/0.jpg)](http://www.youtube.com/watch?v=0w3lGJIISTo)
+
+---
+
+[Publishing photo](http://frogermcs.github.io/InstaMaterial-concept-part-9-photo-publishing/)
+
+Implemented elements and effects:
+
+* Custom view drawing
+* Intent flags
+
+[![Publishing photo](http://img.youtube.com/vi/YgvE3cl34ps/0.jpg)](http://www.youtube.com/watch?v=YgvE3cl34ps)
