@@ -21,7 +21,7 @@ import io.github.froger.instamaterial.ui.view.FeedContextMenu;
 import io.github.froger.instamaterial.ui.view.FeedContextMenuManager;
 
 
-public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItemClickListener,
+public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFeedItemClickListener,
         FeedContextMenu.OnFeedContextMenuItemClickListener {
     public static final String ACTION_SHOW_LOADING_ITEM = "action_show_loading_item";
 

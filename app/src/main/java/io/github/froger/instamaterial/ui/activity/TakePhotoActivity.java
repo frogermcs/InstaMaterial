@@ -138,11 +138,6 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     }
 
     @Override
-    protected boolean shouldInstallDrawer() {
-        return false;
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         cameraView.onResume();

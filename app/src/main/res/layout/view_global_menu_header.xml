@@ -6,6 +6,7 @@
     android:clickable="true">
 
     <LinearLayout
+        android:id="@+id/vGlobalMenuHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
