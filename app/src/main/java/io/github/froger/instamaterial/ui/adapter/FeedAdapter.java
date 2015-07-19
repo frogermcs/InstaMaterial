@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.activity.MainActivity;
 import io.github.froger.instamaterial.ui.view.SendingProgressView;
 
 /**
@@ -262,6 +263,9 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 likedPositions.add(holder.getPosition());
                 updateLikesCounter(holder, true);
                 updateHeartButton(holder, true);
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).showLikedSnackbar();
+                }
             }
         } else if (viewId == R.id.ivFeedCenter) {
             CellFeedViewHolder holder = (CellFeedViewHolder) view.getTag();
@@ -270,6 +274,9 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 updateLikesCounter(holder, true);
                 animatePhotoLike(holder);
                 updateHeartButton(holder, false);
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).showLikedSnackbar();
+                }
             }
         } else if (viewId == R.id.ivUserProfile) {
             if (onFeedItemClickListener != null) {

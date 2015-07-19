@@ -5,7 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -32,6 +34,8 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     RecyclerView rvFeed;
     @InjectView(R.id.btnCreate)
     FloatingActionButton fabCreate;
+    @InjectView(R.id.content)
+    CoordinatorLayout clContent;
 
     private FeedAdapter feedAdapter;
 
@@ -188,5 +192,9 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         startingLocation[0] += fabCreate.getWidth() / 2;
         TakePhotoActivity.startCameraFromLocation(startingLocation, this);
         overridePendingTransition(0, 0);
+    }
+
+    public void showLikedSnackbar() {
+        Snackbar.make(clContent, "Liked!", Snackbar.LENGTH_SHORT).show();
     }
 }
