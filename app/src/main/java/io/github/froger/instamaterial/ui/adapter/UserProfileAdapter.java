@@ -1,6 +1,7 @@
 package io.github.froger.instamaterial.ui.adapter;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Callback;
@@ -22,9 +22,9 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import io.github.froger.instamaterial.ui.utils.CircleTransformation;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.utils.CircleTransformation;
 
 /**
  * Created by Miroslaw Stanek on 20.01.15.
@@ -130,12 +130,10 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void bindProfileOptions(final ProfileOptionsViewHolder holder) {
-        holder.vButtons.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        holder.tlUserProfileTabs.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                holder.vButtons.getViewTreeObserver().removeOnPreDrawListener(this);
-                holder.vUnderline.getLayoutParams().width = holder.btnGrid.getWidth();
-                holder.vUnderline.requestLayout();
+                holder.tlUserProfileTabs.getViewTreeObserver().removeOnPreDrawListener(this);
                 animateUserProfileOptions(holder);
                 return false;
             }
@@ -179,11 +177,8 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private void animateUserProfileOptions(ProfileOptionsViewHolder viewHolder) {
         if (!lockedAnimations) {
-            viewHolder.vButtons.setTranslationY(-viewHolder.vButtons.getHeight());
-            viewHolder.vUnderline.setScaleX(0);
-
-            viewHolder.vButtons.animate().translationY(0).setDuration(300).setStartDelay(USER_OPTIONS_ANIMATION_DELAY).setInterpolator(INTERPOLATOR);
-            viewHolder.vUnderline.animate().scaleX(1).setDuration(200).setStartDelay(USER_OPTIONS_ANIMATION_DELAY + 300).setInterpolator(INTERPOLATOR).start();
+            viewHolder.tlUserProfileTabs.setTranslationY(-viewHolder.tlUserProfileTabs.getHeight());
+            viewHolder.tlUserProfileTabs.animate().translationY(0).setDuration(300).setStartDelay(USER_OPTIONS_ANIMATION_DELAY).setInterpolator(INTERPOLATOR);
         }
     }
 
@@ -238,22 +233,17 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     static class ProfileOptionsViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.btnGrid)
-        ImageButton btnGrid;
-        @InjectView(R.id.btnList)
-        ImageButton btnList;
-        @InjectView(R.id.btnMap)
-        ImageButton btnMap;
-        @InjectView(R.id.btnTagged)
-        ImageButton btnComments;
-        @InjectView(R.id.vUnderline)
-        View vUnderline;
-        @InjectView(R.id.vButtons)
-        View vButtons;
+
+        @InjectView(R.id.tlUserProfileTabs)
+        TabLayout tlUserProfileTabs;
 
         public ProfileOptionsViewHolder(View view) {
             super(view);
             ButterKnife.inject(this, view);
+            tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_grid_on_white));
+            tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_list_white));
+            tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_place_white));
+            tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_label_white));
         }
     }
 
