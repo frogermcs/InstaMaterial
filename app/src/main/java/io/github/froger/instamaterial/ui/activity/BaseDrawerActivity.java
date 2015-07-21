@@ -22,8 +22,8 @@ public class BaseDrawerActivity extends BaseActivity {
 
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @InjectView(R.id.ivUserProfilePhoto)
-    ImageView ivUserProfilePhoto;
+    @InjectView(R.id.ivMenuUserProfilePhoto)
+    ImageView ivMenuUserProfilePhoto;
 
     private int avatarSize;
     private String profilePhoto;
@@ -75,7 +75,7 @@ public class BaseDrawerActivity extends BaseActivity {
                 .resize(avatarSize, avatarSize)
                 .centerCrop()
                 .transform(new CircleTransformation())
-                .into(ivUserProfilePhoto);
+                .into(ivMenuUserProfilePhoto);
     }
 
 }
