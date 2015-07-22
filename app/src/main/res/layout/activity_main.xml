@@ -22,13 +22,11 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/view_feed_toolbar"
-                app:layout_scrollFlags="scroll|enterAlways" />
+                layout="@layout/view_feed_toolbar" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.design.widget.FloatingActionButton
