@@ -90,7 +90,7 @@ public void toggleContextMenuFromView(View openingView, int feedItem, FeedContex
     }
 
     public void hideContextMenu() {
-        if (!isContextMenuDismissing) {
+        if (!isContextMenuDismissing && contextMenuView != null) {
             isContextMenuDismissing = true;
             performDismissAnimation();
         }
