@@ -5,12 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.ImageButton;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -21,7 +23,7 @@ import io.github.froger.instamaterial.ui.view.FeedContextMenu;
 import io.github.froger.instamaterial.ui.view.FeedContextMenuManager;
 
 
-public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItemClickListener,
+public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFeedItemClickListener,
         FeedContextMenu.OnFeedContextMenuItemClickListener {
     public static final String ACTION_SHOW_LOADING_ITEM = "action_show_loading_item";
 
@@ -31,7 +33,9 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
     @InjectView(R.id.rvFeed)
     RecyclerView rvFeed;
     @InjectView(R.id.btnCreate)
-    ImageButton btnCreate;
+    FloatingActionButton fabCreate;
+    @InjectView(R.id.content)
+    CoordinatorLayout clContent;
 
     private FeedAdapter feedAdapter;
 
@@ -99,7 +103,7 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
     }
 
     private void startIntroAnimation() {
-        btnCreate.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
+        fabCreate.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
 
         int actionbarSize = Utils.dpToPx(56);
         getToolbar().setTranslationY(-actionbarSize);
@@ -128,7 +132,7 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
     }
 
     private void startContentAnimation() {
-        btnCreate.animate()
+        fabCreate.animate()
                 .translationY(0)
                 .setInterpolator(new OvershootInterpolator(1.f))
                 .setStartDelay(300)
@@ -184,9 +188,13 @@ public class MainActivity extends BaseActivity implements FeedAdapter.OnFeedItem
     @OnClick(R.id.btnCreate)
     public void onTakePhotoClick() {
         int[] startingLocation = new int[2];
-        btnCreate.getLocationOnScreen(startingLocation);
-        startingLocation[0] += btnCreate.getWidth() / 2;
+        fabCreate.getLocationOnScreen(startingLocation);
+        startingLocation[0] += fabCreate.getWidth() / 2;
         TakePhotoActivity.startCameraFromLocation(startingLocation, this);
         overridePendingTransition(0, 0);
+    }
+
+    public void showLikedSnackbar() {
+        Snackbar.make(clContent, "Liked!", Snackbar.LENGTH_SHORT).show();
     }
 }

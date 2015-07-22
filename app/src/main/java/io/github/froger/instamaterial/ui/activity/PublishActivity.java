@@ -102,11 +102,6 @@ public class PublishActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean shouldInstallDrawer() {
-        return false;
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_publish, menu);
         return true;

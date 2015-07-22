@@ -16,15 +16,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import butterknife.InjectView;
-import io.github.froger.instamaterial.ui.adapter.CommentsAdapter;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
+import io.github.froger.instamaterial.ui.adapter.CommentsAdapter;
 import io.github.froger.instamaterial.ui.view.SendCommentButton;
 
 /**
  * Created by froger_mcs on 11.11.14.
  */
-public class CommentsActivity extends BaseActivity implements SendCommentButton.OnSendClickListener {
+public class CommentsActivity extends BaseDrawerActivity implements SendCommentButton.OnSendClickListener {
     public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
 
     @InjectView(R.id.contentRoot)
