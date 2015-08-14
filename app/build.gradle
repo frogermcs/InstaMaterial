@@ -16,15 +16,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile "com.android.support:appcompat-v7:22.+"
+    compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.android.support:support-v13:22.+'
     compile 'com.android.support:support-v4:22.+'
     compile 'com.android.support:palette-v7:22.+'
     compile 'com.android.support:recyclerview-v7:22.+'
     compile 'com.android.support:cardview-v7:22.+'
     compile 'com.android.support:design:22.2.1'
-
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.jakewharton.timber:timber:2.5.1'
     compile 'com.facebook.rebound:rebound:0.3.6'

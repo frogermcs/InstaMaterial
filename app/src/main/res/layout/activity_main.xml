@@ -39,7 +39,8 @@
             android:src="@drawable/ic_instagram_white"
             app:borderWidth="0dp"
             app:elevation="6dp"
-            app:pressedTranslationZ="12dp" />
+            app:pressedTranslationZ="12dp"
+            app:layout_behavior="io.github.froger.instamaterial.ui.behavior.ScrollAwareFABBehavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
