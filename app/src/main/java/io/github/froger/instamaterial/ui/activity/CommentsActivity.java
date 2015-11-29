@@ -15,7 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
 import io.github.froger.instamaterial.ui.adapter.CommentsAdapter;
@@ -27,15 +27,15 @@ import io.github.froger.instamaterial.ui.view.SendCommentButton;
 public class CommentsActivity extends BaseDrawerActivity implements SendCommentButton.OnSendClickListener {
     public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
 
-    @InjectView(R.id.contentRoot)
+    @Bind(R.id.contentRoot)
     LinearLayout contentRoot;
-    @InjectView(R.id.rvComments)
+    @Bind(R.id.rvComments)
     RecyclerView rvComments;
-    @InjectView(R.id.llAddComment)
+    @Bind(R.id.llAddComment)
     LinearLayout llAddComment;
-    @InjectView(R.id.etComment)
+    @Bind(R.id.etComment)
     EditText etComment;
-    @InjectView(R.id.btnSendComment)
+    @Bind(R.id.btnSendComment)
     SendCommentButton btnSendComment;
 
     private CommentsAdapter commentsAdapter;

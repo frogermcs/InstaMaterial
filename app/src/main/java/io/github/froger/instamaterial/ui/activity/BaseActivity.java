@@ -1,5 +1,6 @@
 package io.github.froger.instamaterial.ui.activity;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -7,8 +8,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.Optional;
+import butterknife.Bind;
 import io.github.froger.instamaterial.R;
 
 /**
@@ -16,12 +16,12 @@ import io.github.froger.instamaterial.R;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    @Optional
-    @InjectView(R.id.toolbar)
+    @Nullable
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
 
-    @Optional
-    @InjectView(R.id.ivLogo)
+    @Nullable
+    @Bind(R.id.ivLogo)
     ImageView ivLogo;
 
     private MenuItem inboxMenuItem;
@@ -29,11 +29,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        injectViews();
+        bindViews();
     }
 
-    protected void injectViews() {
-        ButterKnife.inject(this);
+    protected void bindViews() {
+        ButterKnife.bind(this);
         setupToolbar();
     }
 

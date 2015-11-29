@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.ui.utils.RoundedTransformation;
 
@@ -112,14 +112,14 @@ public class CommentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.ivUserAvatar)
+        @Bind(R.id.ivUserAvatar)
         ImageView ivUserAvatar;
-        @InjectView(R.id.tvComment)
+        @Bind(R.id.tvComment)
         TextView tvComment;
 
         public CommentViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

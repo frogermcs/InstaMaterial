@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Random;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
 import io.github.froger.instamaterial.ui.activity.MainActivity;
@@ -366,25 +366,25 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     public static class CellFeedViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.ivFeedCenter)
+        @Bind(R.id.ivFeedCenter)
         ImageView ivFeedCenter;
-        @InjectView(R.id.ivFeedBottom)
+        @Bind(R.id.ivFeedBottom)
         ImageView ivFeedBottom;
-        @InjectView(R.id.btnComments)
+        @Bind(R.id.btnComments)
         ImageButton btnComments;
-        @InjectView(R.id.btnLike)
+        @Bind(R.id.btnLike)
         ImageButton btnLike;
-        @InjectView(R.id.btnMore)
+        @Bind(R.id.btnMore)
         ImageButton btnMore;
-        @InjectView(R.id.vBgLike)
+        @Bind(R.id.vBgLike)
         View vBgLike;
-        @InjectView(R.id.ivLike)
+        @Bind(R.id.ivLike)
         ImageView ivLike;
-        @InjectView(R.id.tsLikesCounter)
+        @Bind(R.id.tsLikesCounter)
         TextSwitcher tsLikesCounter;
-        @InjectView(R.id.ivUserProfile)
+        @Bind(R.id.ivUserProfile)
         ImageView ivUserProfile;
-        @InjectView(R.id.vImageRoot)
+        @Bind(R.id.vImageRoot)
         FrameLayout vImageRoot;
 
         SendingProgressView vSendingProgress;
@@ -392,7 +392,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         public CellFeedViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
 
     }

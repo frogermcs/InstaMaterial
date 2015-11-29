@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
 
@@ -107,14 +107,14 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     static class PhotoViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.flRoot)
+        @Bind(R.id.flRoot)
         FrameLayout flRoot;
-        @InjectView(R.id.ivPhoto)
+        @Bind(R.id.ivPhoto)
         ImageView ivPhoto;
 
         public PhotoViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

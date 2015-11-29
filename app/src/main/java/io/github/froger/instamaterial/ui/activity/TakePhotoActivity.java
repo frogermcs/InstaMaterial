@@ -34,7 +34,7 @@ import com.commonsware.cwac.camera.SimpleCameraHost;
 
 import java.io.File;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import io.github.froger.instamaterial.R;
@@ -54,23 +54,23 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     private static final int STATE_TAKE_PHOTO = 0;
     private static final int STATE_SETUP_PHOTO = 1;
 
-    @InjectView(R.id.vRevealBackground)
+    @Bind(R.id.vRevealBackground)
     RevealBackgroundView vRevealBackground;
-    @InjectView(R.id.vPhotoRoot)
+    @Bind(R.id.vPhotoRoot)
     View vTakePhotoRoot;
-    @InjectView(R.id.vShutter)
+    @Bind(R.id.vShutter)
     View vShutter;
-    @InjectView(R.id.ivTakenPhoto)
+    @Bind(R.id.ivTakenPhoto)
     ImageView ivTakenPhoto;
-    @InjectView(R.id.vUpperPanel)
+    @Bind(R.id.vUpperPanel)
     ViewSwitcher vUpperPanel;
-    @InjectView(R.id.vLowerPanel)
+    @Bind(R.id.vLowerPanel)
     ViewSwitcher vLowerPanel;
-    @InjectView(R.id.cameraView)
+    @Bind(R.id.cameraView)
     CameraView cameraView;
-    @InjectView(R.id.rvFilters)
+    @Bind(R.id.rvFilters)
     RecyclerView rvFilters;
-    @InjectView(R.id.btnTakePhoto)
+    @Bind(R.id.btnTakePhoto)
     Button btnTakePhoto;
 
     private boolean pendingIntro;

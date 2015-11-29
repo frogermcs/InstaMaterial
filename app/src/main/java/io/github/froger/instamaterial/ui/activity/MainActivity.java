@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.froger.instamaterial.ui.adapter.FeedAdapter;
 import io.github.froger.instamaterial.R;
@@ -30,11 +30,11 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     private static final int ANIM_DURATION_TOOLBAR = 300;
     private static final int ANIM_DURATION_FAB = 400;
 
-    @InjectView(R.id.rvFeed)
+    @Bind(R.id.rvFeed)
     RecyclerView rvFeed;
-    @InjectView(R.id.btnCreate)
+    @Bind(R.id.btnCreate)
     FloatingActionButton fabCreate;
-    @InjectView(R.id.content)
+    @Bind(R.id.content)
     CoordinatorLayout clContent;
 
     private FeedAdapter feedAdapter;

@@ -40,7 +40,7 @@ public class PhotoFiltersAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public PhotoFilterViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

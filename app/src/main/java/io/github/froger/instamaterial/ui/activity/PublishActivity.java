@@ -16,7 +16,7 @@ import android.widget.ToggleButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnCheckedChanged;
 import hugo.weaving.DebugLog;
 import io.github.froger.instamaterial.R;
@@ -29,11 +29,11 @@ import timber.log.Timber;
 public class PublishActivity extends BaseActivity {
     public static final String ARG_TAKEN_PHOTO_URI = "arg_taken_photo_uri";
 
-    @InjectView(R.id.tbFollowers)
+    @Bind(R.id.tbFollowers)
     ToggleButton tbFollowers;
-    @InjectView(R.id.tbDirect)
+    @Bind(R.id.tbDirect)
     ToggleButton tbDirect;
-    @InjectView(R.id.ivPhoto)
+    @Bind(R.id.ivPhoto)
     ImageView ivPhoto;
 
     private boolean propagatingToggleState = false;
