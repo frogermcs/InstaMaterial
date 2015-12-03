@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_like_circle_background"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/ivLike"
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="center"
                 android:src="@drawable/ic_heart_outline_white"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
         </io.github.froger.instamaterial.ui.view.SquaredFrameLayout>
 
