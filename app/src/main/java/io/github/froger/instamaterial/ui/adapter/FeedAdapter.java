@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,17 +29,14 @@ import io.github.froger.instamaterial.ui.view.SendingProgressView;
  * Created by froger_mcs on 05.11.14.
  */
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int VIEW_TYPE_DEFAULT = 1;
-    private static final int VIEW_TYPE_LOADER = 2;
+    public static final String ACTION_LIKE_BUTTON_CLICKED = "action_like_button_button";
+    public static final String ACTION_LIKE_IMAGE_CLICKED = "action_like_image_button";
 
-    private static final int ANIMATED_ITEMS_COUNT = 2;
+    public static final int VIEW_TYPE_DEFAULT = 1;
+    public static final int VIEW_TYPE_LOADER = 2;
 
     private final List<FeedItem> feedItems = new ArrayList<>();
-
     private Context context;
-    private int lastAnimatedPosition = -1;
-    private boolean animateItems = false;
-
     private OnFeedItemClickListener onFeedItemClickListener;
 
     private boolean showLoadingView = false;
@@ -86,13 +82,15 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         cellFeedViewHolder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onFeedItemClickListener.onMoreClick(view, cellFeedViewHolder.getAdapterPosition());
+                onFeedItemClickListener.onMoreClick(v, cellFeedViewHolder.getAdapterPosition());
             }
         });
         cellFeedViewHolder.ivFeedCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyItemChanged(cellFeedViewHolder.getAdapterPosition());
+                int adapterPosition = cellFeedViewHolder.getAdapterPosition();
+                feedItems.get(adapterPosition).likesCount++;
+                notifyItemChanged(adapterPosition, ACTION_LIKE_IMAGE_CLICKED);
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).showLikedSnackbar();
                 }
@@ -101,7 +99,9 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         cellFeedViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyItemChanged(cellFeedViewHolder.getAdapterPosition());
+                int adapterPosition = cellFeedViewHolder.getAdapterPosition();
+                feedItems.get(adapterPosition).likesCount++;
+                notifyItemChanged(adapterPosition, ACTION_LIKE_BUTTON_CLICKED);
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).showLikedSnackbar();
                 }
@@ -115,48 +115,14 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
     }
 
-    private void runEnterAnimation(View view, int position) {
-        if (!animateItems || position >= ANIMATED_ITEMS_COUNT - 1) {
-            return;
-        }
-
-        if (position > lastAnimatedPosition) {
-            lastAnimatedPosition = position;
-            view.setTranslationY(Utils.getScreenHeight(context));
-            view.animate()
-                    .translationY(0)
-                    .setInterpolator(new DecelerateInterpolator(3.f))
-                    .setDuration(700)
-                    .start();
-        }
-    }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        runEnterAnimation(viewHolder.itemView, position);
         final CellFeedViewHolder holder = (CellFeedViewHolder) viewHolder;
         if (getItemViewType(position) == VIEW_TYPE_DEFAULT) {
-            bindDefaultFeedItem(position, holder);
+            holder.bindView(feedItems.get(position));
         } else if (getItemViewType(position) == VIEW_TYPE_LOADER) {
             bindLoadingFeedItem(holder);
         }
-    }
-
-    private void bindDefaultFeedItem(int position, CellFeedViewHolder holder) {
-        FeedItem feedItem = feedItems.get(position);
-        if (position % 2 == 0) {
-            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
-            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
-        } else {
-            holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
-            holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
-        }
-
-        holder.tsLikesCounter.setCurrentText(context.getResources().getQuantityString(
-                R.plurals.likes_count, feedItem.likesCount, feedItem.likesCount
-        ));
-        holder.btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
-        holder.btnComments.getRootView().setTag(holder);
     }
 
     private void bindLoadingFeedItem(final CellFeedViewHolder holder) {
@@ -205,7 +171,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void updateItems(boolean animated) {
-        animateItems = animated;
         feedItems.clear();
         feedItems.addAll(Arrays.asList(
                 new FeedItem(33, false),
@@ -216,7 +181,11 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 new FeedItem(8, false),
                 new FeedItem(99, false)
         ));
-        notifyDataSetChanged();
+        if (animated) {
+            notifyItemRangeInserted(0, feedItems.size());
+        } else {
+            notifyDataSetChanged();
+        }
     }
 
     public void setOnFeedItemClickListener(OnFeedItemClickListener onFeedItemClickListener) {
@@ -253,11 +222,33 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         SendingProgressView vSendingProgress;
         View vProgressBg;
 
+        FeedItem feedItem;
+
         public CellFeedViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
 
+        public void bindView(FeedItem feedItem) {
+            this.feedItem = feedItem;
+            final int adapterPosition = getAdapterPosition();
+            if (adapterPosition % 2 == 0) {
+                ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
+                ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
+            } else {
+                ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
+                ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
+            }
+
+            tsLikesCounter.setCurrentText(vImageRoot.getResources().getQuantityString(
+                    R.plurals.likes_count, feedItem.likesCount, feedItem.likesCount
+            ));
+            btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
+        }
+
+        public FeedItem getFeedItem() {
+            return feedItem;
+        }
     }
 
     public static class FeedItem {
