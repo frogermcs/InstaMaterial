@@ -1,14 +1,11 @@
 package io.github.froger.instamaterial.ui.adapter;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,9 +18,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.froger.instamaterial.R;
-import io.github.froger.instamaterial.Utils;
 import io.github.froger.instamaterial.ui.activity.MainActivity;
-import io.github.froger.instamaterial.ui.view.SendingProgressView;
+import io.github.froger.instamaterial.ui.view.LoadingFeedItemView;
 
 /**
  * Created by froger_mcs on 05.11.14.
@@ -36,11 +32,11 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int VIEW_TYPE_LOADER = 2;
 
     private final List<FeedItem> feedItems = new ArrayList<>();
+
     private Context context;
     private OnFeedItemClickListener onFeedItemClickListener;
 
     private boolean showLoadingView = false;
-    private int loadingViewSize = Utils.dpToPx(200);
 
     public FeedAdapter(Context context) {
         this.context = context;
@@ -48,28 +44,21 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(context).inflate(R.layout.item_feed, parent, false);
-        final CellFeedViewHolder cellFeedViewHolder = new CellFeedViewHolder(view);
         if (viewType == VIEW_TYPE_DEFAULT) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_feed, parent, false);
+            CellFeedViewHolder cellFeedViewHolder = new CellFeedViewHolder(view);
             setupClickableViews(view, cellFeedViewHolder);
+            return cellFeedViewHolder;
         } else if (viewType == VIEW_TYPE_LOADER) {
-            View bgView = new View(context);
-            bgView.setLayoutParams(new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-            ));
-            bgView.setBackgroundColor(0x77ffffff);
-            cellFeedViewHolder.vImageRoot.addView(bgView);
-            cellFeedViewHolder.vProgressBg = bgView;
-
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(loadingViewSize, loadingViewSize);
-            params.gravity = Gravity.CENTER;
-            SendingProgressView sendingProgressView = new SendingProgressView(context);
-            sendingProgressView.setLayoutParams(params);
-            cellFeedViewHolder.vImageRoot.addView(sendingProgressView);
-            cellFeedViewHolder.vSendingProgress = sendingProgressView;
+            LoadingFeedItemView view = new LoadingFeedItemView(context);
+            view.setLayoutParams(new LinearLayoutCompat.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT)
+            );
+            return new LoadingCellFeedViewHolder(view);
         }
 
-        return cellFeedViewHolder;
+        return null;
     }
 
     private void setupClickableViews(final View view, final CellFeedViewHolder cellFeedViewHolder) {
@@ -117,43 +106,22 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        final CellFeedViewHolder holder = (CellFeedViewHolder) viewHolder;
-        if (getItemViewType(position) == VIEW_TYPE_DEFAULT) {
-            holder.bindView(feedItems.get(position));
-        } else if (getItemViewType(position) == VIEW_TYPE_LOADER) {
-            bindLoadingFeedItem(holder);
+        ((CellFeedViewHolder) viewHolder).bindView(feedItems.get(position));
+
+        if (getItemViewType(position) == VIEW_TYPE_LOADER) {
+            bindLoadingFeedItem((LoadingCellFeedViewHolder) viewHolder);
         }
     }
 
-    private void bindLoadingFeedItem(final CellFeedViewHolder holder) {
-        holder.ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
-        holder.ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
-        holder.vSendingProgress.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                holder.vSendingProgress.getViewTreeObserver().removeOnPreDrawListener(this);
-                holder.vSendingProgress.simulateProgress();
-                return true;
-            }
-        });
-        holder.vSendingProgress.setOnLoadingFinishedListener(new SendingProgressView.OnLoadingFinishedListener() {
+    private void bindLoadingFeedItem(final LoadingCellFeedViewHolder holder) {
+        holder.loadingFeedItemView.setOnLoadingFinishedListener(new LoadingFeedItemView.OnLoadingFinishedListener() {
             @Override
             public void onLoadingFinished() {
-                holder.vSendingProgress.animate().scaleY(0).scaleX(0).setDuration(200).setStartDelay(100);
-                holder.vProgressBg.animate().alpha(0.f).setDuration(200).setStartDelay(100)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                holder.vSendingProgress.setScaleX(1);
-                                holder.vSendingProgress.setScaleY(1);
-                                holder.vProgressBg.setAlpha(1);
-                                showLoadingView = false;
-                                notifyItemChanged(0);
-                            }
-                        })
-                        .start();
+                showLoadingView = false;
+                notifyItemChanged(0);
             }
         });
+        holder.loadingFeedItemView.startLoading();
     }
 
     @Override
@@ -219,9 +187,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Bind(R.id.vImageRoot)
         FrameLayout vImageRoot;
 
-        SendingProgressView vSendingProgress;
-        View vProgressBg;
-
         FeedItem feedItem;
 
         public CellFeedViewHolder(View view) {
@@ -231,23 +196,32 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public void bindView(FeedItem feedItem) {
             this.feedItem = feedItem;
-            final int adapterPosition = getAdapterPosition();
-            if (adapterPosition % 2 == 0) {
-                ivFeedCenter.setImageResource(R.drawable.img_feed_center_1);
-                ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_1);
-            } else {
-                ivFeedCenter.setImageResource(R.drawable.img_feed_center_2);
-                ivFeedBottom.setImageResource(R.drawable.img_feed_bottom_2);
-            }
-
+            int adapterPosition = getAdapterPosition();
+            ivFeedCenter.setImageResource(adapterPosition % 2 == 0 ? R.drawable.img_feed_center_1 : R.drawable.img_feed_center_2);
+            ivFeedBottom.setImageResource(adapterPosition % 2 == 0 ? R.drawable.img_feed_bottom_1 : R.drawable.img_feed_bottom_2);
+            btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
             tsLikesCounter.setCurrentText(vImageRoot.getResources().getQuantityString(
                     R.plurals.likes_count, feedItem.likesCount, feedItem.likesCount
             ));
-            btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
         }
 
         public FeedItem getFeedItem() {
             return feedItem;
+        }
+    }
+
+    public static class LoadingCellFeedViewHolder extends CellFeedViewHolder {
+
+        LoadingFeedItemView loadingFeedItemView;
+
+        public LoadingCellFeedViewHolder(LoadingFeedItemView view) {
+            super(view);
+            this.loadingFeedItemView = view;
+        }
+
+        @Override
+        public void bindView(FeedItem feedItem) {
+            super.bindView(feedItem);
         }
     }
 
@@ -262,10 +236,10 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public interface OnFeedItemClickListener {
-        public void onCommentsClick(View v, int position);
+        void onCommentsClick(View v, int position);
 
-        public void onMoreClick(View v, int position);
+        void onMoreClick(View v, int position);
 
-        public void onProfileClick(View v);
+        void onProfileClick(View v);
     }
 }

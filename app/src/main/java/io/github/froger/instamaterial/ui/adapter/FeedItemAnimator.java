@@ -30,7 +30,7 @@ public class FeedItemAnimator extends DefaultItemAnimator {
     Map<RecyclerView.ViewHolder, AnimatorSet> likeAnimationsMap = new HashMap<>();
     Map<RecyclerView.ViewHolder, AnimatorSet> heartAnimationsMap = new HashMap<>();
 
-    private int lastAddAnimatedItem = -1;
+    private int lastAddAnimatedItem = -2;
 
     @Override
     public boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
@@ -68,7 +68,8 @@ public class FeedItemAnimator extends DefaultItemAnimator {
     }
 
     private void runEnterAnimation(final FeedAdapter.CellFeedViewHolder holder) {
-        holder.itemView.setTranslationY(Utils.getScreenHeight(holder.itemView.getContext()));
+        final int screenHeight = Utils.getScreenHeight(holder.itemView.getContext());
+        holder.itemView.setTranslationY(screenHeight);
         holder.itemView.animate()
                 .translationY(0)
                 .setInterpolator(new DecelerateInterpolator(3.f))
