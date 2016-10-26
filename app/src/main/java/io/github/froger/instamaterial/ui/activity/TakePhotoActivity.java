@@ -18,7 +18,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -34,9 +33,8 @@ import com.commonsware.cwac.camera.SimpleCameraHost;
 
 import java.io.File;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
 import io.github.froger.instamaterial.ui.adapter.PhotoFiltersAdapter;
@@ -54,23 +52,23 @@ public class TakePhotoActivity extends BaseActivity implements RevealBackgroundV
     private static final int STATE_TAKE_PHOTO = 0;
     private static final int STATE_SETUP_PHOTO = 1;
 
-    @Bind(R.id.vRevealBackground)
+    @BindView(R.id.vRevealBackground)
     RevealBackgroundView vRevealBackground;
-    @Bind(R.id.vPhotoRoot)
+    @BindView(R.id.vPhotoRoot)
     View vTakePhotoRoot;
-    @Bind(R.id.vShutter)
+    @BindView(R.id.vShutter)
     View vShutter;
-    @Bind(R.id.ivTakenPhoto)
+    @BindView(R.id.ivTakenPhoto)
     ImageView ivTakenPhoto;
-    @Bind(R.id.vUpperPanel)
+    @BindView(R.id.vUpperPanel)
     ViewSwitcher vUpperPanel;
-    @Bind(R.id.vLowerPanel)
+    @BindView(R.id.vLowerPanel)
     ViewSwitcher vLowerPanel;
-    @Bind(R.id.cameraView)
+    @BindView(R.id.cameraView)
     CameraView cameraView;
-    @Bind(R.id.rvFilters)
+    @BindView(R.id.rvFilters)
     RecyclerView rvFilters;
-    @Bind(R.id.btnTakePhoto)
+    @BindView(R.id.btnTakePhoto)
     Button btnTakePhoto;
 
     private boolean pendingIntro;

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.froger.instamaterial.R;
 
@@ -20,9 +20,9 @@ import io.github.froger.instamaterial.R;
  */
 public class LoadingFeedItemView extends FrameLayout {
 
-    @Bind(R.id.vSendingProgress)
+    @BindView(R.id.vSendingProgress)
     SendingProgressView vSendingProgress;
-    @Bind(R.id.vProgressBg)
+    @BindView(R.id.vProgressBg)
     View vProgressBg;
 
     private OnLoadingFinishedListener onLoadingFinishedListener;

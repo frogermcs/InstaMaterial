@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import io.github.froger.instamaterial.R;
 
 /**
@@ -17,11 +17,11 @@ import io.github.froger.instamaterial.R;
 public class BaseActivity extends AppCompatActivity {
 
     @Nullable
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Nullable
-    @Bind(R.id.ivLogo)
+    @BindView(R.id.ivLogo)
     ImageView ivLogo;
 
     private MenuItem inboxMenuItem;

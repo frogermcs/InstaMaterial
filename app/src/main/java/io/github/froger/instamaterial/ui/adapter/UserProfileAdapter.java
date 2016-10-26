@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.Utils;
 
@@ -107,9 +107,9 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     static class PhotoViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.flRoot)
+        @BindView(R.id.flRoot)
         FrameLayout flRoot;
-        @Bind(R.id.ivPhoto)
+        @BindView(R.id.ivPhoto)
         ImageView ivPhoto;
 
         public PhotoViewHolder(View view) {
