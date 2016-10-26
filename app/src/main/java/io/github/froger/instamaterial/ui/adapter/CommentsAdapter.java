@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.ui.utils.RoundedTransformation;
 
@@ -112,9 +112,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.ivUserAvatar)
+        @BindView(R.id.ivUserAvatar)
         ImageView ivUserAvatar;
-        @Bind(R.id.tvComment)
+        @BindView(R.id.tvComment)
         TextView tvComment;
 
         public CommentViewHolder(View view) {

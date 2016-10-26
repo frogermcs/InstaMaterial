@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.ui.activity.MainActivity;
@@ -166,25 +166,25 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class CellFeedViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.ivFeedCenter)
+        @BindView(R.id.ivFeedCenter)
         ImageView ivFeedCenter;
-        @Bind(R.id.ivFeedBottom)
+        @BindView(R.id.ivFeedBottom)
         ImageView ivFeedBottom;
-        @Bind(R.id.btnComments)
+        @BindView(R.id.btnComments)
         ImageButton btnComments;
-        @Bind(R.id.btnLike)
+        @BindView(R.id.btnLike)
         ImageButton btnLike;
-        @Bind(R.id.btnMore)
+        @BindView(R.id.btnMore)
         ImageButton btnMore;
-        @Bind(R.id.vBgLike)
+        @BindView(R.id.vBgLike)
         View vBgLike;
-        @Bind(R.id.ivLike)
+        @BindView(R.id.ivLike)
         ImageView ivLike;
-        @Bind(R.id.tsLikesCounter)
+        @BindView(R.id.tsLikesCounter)
         TextSwitcher tsLikesCounter;
-        @Bind(R.id.ivUserProfile)
+        @BindView(R.id.ivUserProfile)
         ImageView ivUserProfile;
-        @Bind(R.id.vImageRoot)
+        @BindView(R.id.vImageRoot)
         FrameLayout vImageRoot;
 
         FeedItem feedItem;
