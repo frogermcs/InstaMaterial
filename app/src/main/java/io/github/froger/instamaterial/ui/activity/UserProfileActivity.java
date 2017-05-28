@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.ui.adapter.UserProfileAdapter;
 import io.github.froger.instamaterial.ui.utils.CircleTransformation;
@@ -30,23 +30,23 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
     private static final int USER_OPTIONS_ANIMATION_DELAY = 300;
     private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
-    @Bind(R.id.vRevealBackground)
+    @BindView(R.id.vRevealBackground)
     RevealBackgroundView vRevealBackground;
-    @Bind(R.id.rvUserProfile)
+    @BindView(R.id.rvUserProfile)
     RecyclerView rvUserProfile;
 
-    @Bind(R.id.tlUserProfileTabs)
+    @BindView(R.id.tlUserProfileTabs)
     TabLayout tlUserProfileTabs;
 
-    @Bind(R.id.ivUserProfilePhoto)
+    @BindView(R.id.ivUserProfilePhoto)
     ImageView ivUserProfilePhoto;
-    @Bind(R.id.vUserDetails)
+    @BindView(R.id.vUserDetails)
     View vUserDetails;
-    @Bind(R.id.btnFollow)
+    @BindView(R.id.btnFollow)
     Button btnFollow;
-    @Bind(R.id.vUserStats)
+    @BindView(R.id.vUserStats)
     View vUserStats;
-    @Bind(R.id.vUserProfileRoot)
+    @BindView(R.id.vUserProfileRoot)
     View vUserProfileRoot;
 
     private int avatarSize;

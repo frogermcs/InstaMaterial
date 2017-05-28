@@ -11,10 +11,9 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindDimen;
 import butterknife.BindString;
-import butterknife.OnClick;
 import io.github.froger.instamaterial.R;
 import io.github.froger.instamaterial.ui.utils.CircleTransformation;
 
@@ -23,9 +22,9 @@ import io.github.froger.instamaterial.ui.utils.CircleTransformation;
  */
 public class BaseDrawerActivity extends BaseActivity {
 
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.vNavigation)
+    @BindView(R.id.vNavigation)
     NavigationView vNavigation;
 
     @BindDimen(R.dimen.global_menu_avatar_size)
