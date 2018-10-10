@@ -2,32 +2,32 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 27
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "io.github.froger.instamaterial"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 2
         versionName "1.0.1"
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:appcompat-v7:25.0.0"
-    compile 'com.android.support:support-v13:25.0.0'
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:palette-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation 'com.android.support:support-v13:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:palette-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.jakewharton.timber:timber:4.3.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.commonsware.cwac:camera:0.7.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.commonsware.cwac:camera:0.7.0'
 }
