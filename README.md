@@ -135,12 +135,12 @@ Implemented elements and effects:
 
 ### Build Environment:
 
-* [Compile SDK Version] - 25
-* [Build Tools Version] - 25.0.0
-* [Android Gradle Plugin Version] - 4.0.1
-* [Gradle Version] - 6.1.1
-* [Min SDK Version] - 15
-* [Target SDK Version]- 25
+- **Compile SDK Version** - 25
+- **Build Tools Version** - 25.0.0
+- **Android Gradle Plugin Version** - 4.0.1
+- **Gradle Version** - 6.1.1
+- **Min SDK Version** - 15
+- **Target SDK Version** - 25
 
 ### Contributing
 
