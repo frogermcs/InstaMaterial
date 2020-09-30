@@ -128,3 +128,27 @@ Implemented elements and effects:
 * Intent flags
 
 [![Publishing photo](http://img.youtube.com/vi/YgvE3cl34ps/0.jpg)](http://www.youtube.com/watch?v=YgvE3cl34ps)
+
+### Prerequisites
+
+* Android SDK platform 25
+
+### Build Environment:
+
+- **Compile SDK Version** - 25
+- **Build Tools Version** - 25.0.0
+- **Android Gradle Plugin Version** - 4.0.1
+- **Gradle Version** - 6.1.1
+- **Min SDK Version** - 15
+- **Target SDK Version** - 25
+
+### Contributing
+
+Contributions are what make the open source community such an amazng place to learn,inspire and create.Any contributions you make are greatly appreciated.
+
+Steps to contribute:
+
+*  Fork the Project.
+* Commit your changes.
+* Open a pull request.
+* Also See [Open issues](https://github.com/frogermcs/InstaMaterial/issues) for a known issues and list of proposed features.
